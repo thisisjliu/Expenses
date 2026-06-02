@@ -64,6 +64,24 @@ body{display:flex;flex-direction:column;height:100dvh;}
 .cal-donut-wrap{position:relative;width:44px;height:44px;}
 .cal-donut-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;}
 
+
+/* REMINDERS */
+.rem-header{padding:16px 20px 8px;flex-shrink:0;}
+.rem-title{font-size:28px;font-weight:700;letter-spacing:-.5px;}
+.rem-subtitle{font-size:14px;color:var(--text2);margin-top:2px;margin-bottom:12px;}
+.rem-upcoming{background:#1a2a1a;border-radius:20px;margin:0 16px 12px;padding:16px;}
+.rem-upcoming-title{font-size:12px;color:var(--green);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px;}
+.rem-card{background:var(--card);border-radius:18px;padding:14px 16px;margin:0 16px 10px;display:flex;align-items:center;gap:14px;cursor:pointer;}
+.rem-card-left{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.rem-card-body{flex:1;min-width:0;}
+.rem-card-name{font-size:15px;font-weight:500;color:#fff;}
+.rem-card-meta{font-size:12px;color:#555;margin-top:2px;}
+.rem-card-right{text-align:right;}
+.rem-card-amt{font-size:16px;font-weight:700;color:#fff;}
+.rem-card-due{font-size:11px;margin-top:2px;}
+.rem-section-head{font-size:12px;color:#555;font-weight:500;text-transform:uppercase;letter-spacing:.05em;padding:0 16px;margin-bottom:8px;}
+.rem-days-badge{font-size:11px;font-weight:600;padding:3px 8px;border-radius:10px;}
+
 /* ACCOUNTS SCREEN */
 .acct-header{padding:16px 20px 8px;flex-shrink:0;}
 .acct-title{font-size:28px;font-weight:700;letter-spacing:-.5px;}
@@ -285,6 +303,64 @@ body{display:flex;flex-direction:column;height:100dvh;}
 .toast{position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#1c1c1e;border:0.5px solid var(--border);border-radius:14px;padding:12px 20px;font-size:14px;font-weight:500;z-index:400;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;}
 .toast.show{opacity:1;}
 
+
+/* REMINDERS SCREEN */
+.rem-header{padding:16px 20px 12px;flex-shrink:0;}
+.rem-title{font-size:28px;font-weight:700;letter-spacing:-.5px;}
+.rem-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px;margin-bottom:24px;}
+.rem-tile{border-radius:18px;padding:14px 16px 14px;cursor:pointer;min-height:90px;display:flex;flex-direction:column;justify-content:space-between;}
+.rem-tile-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.rem-tile-icon{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;}
+.rem-tile-icon svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.rem-tile-count{font-size:28px;font-weight:700;color:#fff;}
+.rem-tile-label{font-size:14px;font-weight:500;color:#fff;margin-top:6px;}
+.rem-lists-head{font-size:20px;font-weight:700;padding:0 16px;margin-bottom:10px;}
+.rem-lists-card{background:var(--card);border-radius:18px;margin:0 16px;overflow:hidden;}
+.rem-list-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:.5px solid var(--border);cursor:pointer;}
+.rem-list-row:last-child{border-bottom:none;}
+.rem-list-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.rem-list-dot svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;}
+.rem-list-name{flex:1;font-size:15px;color:var(--text);}
+.rem-list-count{font-size:14px;color:var(--text2);}
+.rem-list-chev svg{width:14px;height:14px;stroke:var(--text3);fill:none;stroke-width:2;stroke-linecap:round;}
+.add-list-btn{background:var(--card);border-radius:14px;padding:13px 16px;margin:10px 16px 0;display:flex;align-items:center;gap:10px;cursor:pointer;border:none;width:calc(100% - 32px);color:var(--text);font-family:inherit;font-size:15px;}
+.add-list-icon{width:30px;height:30px;background:#1a3a1a;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.add-list-icon svg{width:16px;height:16px;stroke:var(--green);fill:none;stroke-width:2.5;stroke-linecap:round;}
+
+/* REMINDER DETAIL SCREEN */
+.rem-detail-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;flex-shrink:0;}
+.rem-back-btn{display:flex;align-items:center;gap:4px;font-size:15px;color:var(--blue);cursor:pointer;background:none;border:none;font-family:inherit;}
+.rem-back-btn svg{width:18px;height:18px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;}
+.rem-item-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:.5px solid var(--border);cursor:pointer;}
+.rem-item-row:last-child{border-bottom:none;}
+.rem-check{width:24px;height:24px;border-radius:50%;border:2px solid;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.rem-check.done{border-color:transparent;}
+.rem-check.done svg{display:block;}
+.rem-check svg{display:none;width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;}
+.rem-item-body{flex:1;min-width:0;}
+.rem-item-title{font-size:15px;color:var(--text);}
+.rem-item-title.done{color:var(--text3);text-decoration:line-through;}
+.rem-item-meta{font-size:12px;color:var(--text2);margin-top:2px;}
+.rem-item-meta.overdue{color:var(--red);}
+.rem-flag{color:var(--amber);}
+.rem-flag svg{width:14px;height:14px;fill:var(--amber);stroke:none;}
+.rem-add-inline{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;}
+.rem-add-inline svg{width:22px;height:22px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;}
+.rem-add-inline span{font-size:15px;color:var(--blue);}
+
+/* REMINDER MODAL */
+.rem-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:300;align-items:flex-end;justify-content:center;}
+.rem-modal.active{display:flex;}
+.rem-sheet{background:#1c1c1e;border-radius:24px 24px 0 0;padding:20px 20px max(40px,env(safe-area-inset-bottom));width:100%;max-width:430px;max-height:85vh;overflow-y:auto;}
+.rem-sheet-title{font-size:18px;font-weight:600;margin-bottom:14px;}
+.rem-field{background:#2c2c2e;border-radius:12px;padding:13px 16px;font-size:15px;color:var(--text);width:100%;border:none;outline:none;font-family:inherit;margin-bottom:10px;box-sizing:border-box;}
+.rem-field::placeholder{color:var(--text3);}
+.rem-options-row{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.rem-opt-chip{background:#2c2c2e;border:1.5px solid transparent;border-radius:20px;padding:7px 14px;font-size:13px;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:6px;}
+.rem-opt-chip.active{border-color:#fff;color:#fff;}
+.rem-modal-actions{display:flex;gap:10px;margin-top:4px;}
+.rem-save-btn{flex:1;background:#fff;border-radius:14px;padding:14px;font-size:15px;font-weight:600;color:#000;cursor:pointer;border:none;font-family:inherit;}
+.rem-cancel-btn{background:#2c2c2e;border-radius:14px;padding:14px 18px;font-size:15px;color:var(--text2);cursor:pointer;border:none;font-family:inherit;}
 </style>
 </head>
 <body>
@@ -430,6 +506,14 @@ body{display:flex;flex-direction:column;height:100dvh;}
       <div class="settings-card" id="budget-inputs"></div>
     </div>
     <div class="settings-section">
+      <div class="settings-section-title">帳戶 Accounts</div>
+      <div class="settings-card" id="cat-acct-list"></div>
+      <button class="add-cat-btn" onclick="openAddAcct()" style="margin-top:10px;">
+        <div class="add-acct-icon"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:var(--green);fill:none;stroke-width:2.5;stroke-linecap:round;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        Add account
+      </button>
+    </div>
+    <div class="settings-section">
       <div class="settings-section-title">類別 Categories</div>
       <div class="settings-card" id="cat-settings-list"></div>
       <button class="add-cat-btn" onclick="openAddCat()">
@@ -531,6 +615,85 @@ body{display:flex;flex-direction:column;height:100dvh;}
   </div>
 </div>
 
+<!-- REMINDERS SCREEN -->
+<div class="screen" id="screen-reminders">
+  <div class="status-bar" style="padding:12px 20px 0;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;">
+    <span style="font-size:22px;font-weight:700;letter-spacing:-.3px;">Reminders</span>
+    <button style="background:none;border:none;cursor:pointer;" onclick="openAddReminder(null)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0a84ff" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+  </div>
+  <div class="scroll-body">
+    <div style="height:16px;"></div>
+    <div class="rem-grid" id="rem-summary-grid"></div>
+    <div class="rem-lists-head">My Lists</div>
+    <div class="rem-lists-card" id="rem-lists-card"></div>
+    <button class="add-list-btn" onclick="openAddList()">
+      <div class="add-list-icon">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      Add List
+    </button>
+    <div style="height:16px;"></div>
+  </div>
+</div>
+
+<!-- REMINDER DETAIL SCREEN (filtered list view) -->
+<div class="screen" id="screen-rem-detail">
+  <div class="rem-detail-header">
+    <button class="rem-back-btn" onclick="showScreen('reminders')">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Reminders
+    </button>
+    <div id="rem-detail-title" style="font-size:17px;font-weight:600;color:#fff;"></div>
+    <button style="background:none;border:none;cursor:pointer;" onclick="openAddReminder(currentListId)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a84ff" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+  </div>
+  <div class="scroll-body">
+    <div class="settings-card" style="margin:0 16px;" id="rem-detail-list"></div>
+  </div>
+</div>
+
+<!-- ADD REMINDER MODAL -->
+<div class="rem-modal" id="rem-modal" onclick="closeRemModal(event)">
+  <div class="rem-sheet">
+    <div class="rem-sheet-title" id="rem-modal-title">New Reminder</div>
+    <input class="rem-field" id="rem-title-input" placeholder="Title" type="text">
+    <textarea class="rem-field" id="rem-notes-input" placeholder="Notes" rows="2" style="resize:none;line-height:1.5;"></textarea>
+    <div class="form-label" style="margin-bottom:8px;">Due date</div>
+    <input class="rem-field" id="rem-date-input" type="date">
+    <div class="form-label" style="margin-bottom:8px;margin-top:4px;">List</div>
+    <div class="rem-options-row" id="rem-list-chips"></div>
+    <div class="form-label" style="margin-bottom:8px;">Priority</div>
+    <div class="rem-options-row">
+      <div class="rem-opt-chip" id="pri-none" onclick="selectPriority('none',this)">None</div>
+      <div class="rem-opt-chip" id="pri-low" onclick="selectPriority('low',this)">🔵 Low</div>
+      <div class="rem-opt-chip" id="pri-med" onclick="selectPriority('medium',this)">🟡 Medium</div>
+      <div class="rem-opt-chip" id="pri-high" onclick="selectPriority('high',this)">🔴 High</div>
+    </div>
+    <div class="rem-modal-actions">
+      <button class="rem-save-btn" onclick="saveReminder()">Save</button>
+      <button class="rem-cancel-btn" onclick="closeRemModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD LIST MODAL -->
+<div class="rem-modal" id="rem-list-modal" onclick="closeListModal(event)">
+  <div class="rem-sheet">
+    <div class="rem-sheet-title" id="rem-list-modal-title">New List</div>
+    <input class="rem-field" id="rem-list-name-input" placeholder="List name" type="text">
+    <div class="form-label" style="margin-bottom:8px;">Colour</div>
+    <div class="color-picker-row" id="rem-list-color-swatches"></div>
+    <div class="rem-modal-actions">
+      <button class="rem-save-btn" onclick="saveReminderList()">Save</button>
+      <button class="rem-cancel-btn" onclick="closeListModal()">Cancel</button>
+    </div>
+    <button id="rem-list-delete-btn" onclick="deleteReminderList()" style="display:none;width:100%;margin-top:8px;background:#2c2c2e;border:none;border-radius:14px;padding:14px;font-size:15px;color:var(--red);cursor:pointer;font-family:inherit;">Delete List</button>
+  </div>
+</div>
+
 <!-- NAV BAR -->
 <div class="nav-bar">
   <div class="nav-pill">
@@ -542,9 +705,9 @@ body{display:flex;flex-direction:column;height:100dvh;}
       <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
       <span>Progress</span>
     </div>
-    <div class="nav-item" onclick="showScreen('accounts')" id="nav-accounts">
-      <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-      <span>Accounts</span>
+    <div class="nav-item" onclick="showScreen('reminders')" id="nav-reminders">
+      <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <span>Reminders</span>
     </div>
     <div class="nav-item" onclick="showScreen('settings')" id="nav-settings">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -577,10 +740,22 @@ body{display:flex;flex-direction:column;height:100dvh;}
 <div class="cat-modal" id="cat-modal" onclick="closeCatModal(event)">
   <div class="cat-sheet">
     <div class="cat-sheet-title" id="cat-modal-title">新增類別 Add category</div>
-    <input class="cat-name-input" id="cat-name-zh" placeholder="中文名稱 Chinese name (e.g. 飲食)">
-    <input class="cat-name-input" id="cat-name-en" placeholder="English name (e.g. Food)" style="margin-top:-6px;">
-    <div class="form-label" style="margin-bottom:10px;">顏色 Colour</div>
+    <div style="display:flex;gap:10px;margin-bottom:10px;">
+      <div id="cat-emoji-display" onclick="toggleEmojiPicker()" style="width:52px;height:52px;background:#2c2c2e;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;flex-shrink:0;border:1.5px solid #3a3a3c;"></div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+        <input class="cat-name-input" id="cat-name-zh" placeholder="中文名稱 Chinese name" style="margin-bottom:0;">
+        <input class="cat-name-input" id="cat-name-en" placeholder="English name" style="margin-bottom:0;">
+      </div>
+    </div>
+    <div id="emoji-picker-grid" style="display:none;background:#2c2c2e;border-radius:14px;padding:10px;margin-bottom:10px;">
+      <div style="display:flex;flex-wrap:wrap;gap:6px;" id="emoji-grid-inner"></div>
+    </div>
+    <div class="form-label" style="margin-bottom:8px;">顏色 Colour</div>
     <div class="color-picker-row" id="color-swatches"></div>
+    <div class="form-label" style="margin-bottom:8px;margin-top:12px;">月預算 Monthly budget: <span id="cat-budget-val" style="color:#fff;font-weight:600;">A$200</span></div>
+    <input type="range" id="cat-budget-slider" min="0" max="5000" step="50" value="200"
+      oninput="document.getElementById('cat-budget-val').textContent='A$'+this.value"
+      style="width:100%;accent-color:#fff;margin-bottom:14px;">
     <div class="cat-modal-actions">
       <button class="cat-save-btn" onclick="saveCat()">儲存 Save</button>
       <button class="cat-delete-btn" id="cat-delete-btn" onclick="deleteCat()" style="display:none;">Delete</button>
@@ -635,6 +810,12 @@ let state = {
   accounts: [...DEFAULT_ACCOUNTS],
   totalBudget: 3000,
   apiKey: '',
+  reminders: [],
+  reminderLists: [
+    {id:'rl1', name:'Personal', color:'#0a84ff'},
+    {id:'rl2', name:'Work',     color:'#ff453a'},
+    {id:'rl3', name:'Finance',  color:'#30d158'},
+  ],
 };
 
 let editingCatId = null;
@@ -683,14 +864,18 @@ function showScreen(name) {
   if (name === 'add') {
     document.getElementById('screen-add').classList.add('active');
     initAddForm();
-  } else {
-    document.getElementById('screen-' + name).classList.add('active');
-    document.getElementById('nav-' + name)?.classList.add('active');
+    return;
   }
+  const screenEl = document.getElementById('screen-' + name);
+  if (screenEl) screenEl.classList.add('active');
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
   if (name === 'home') renderHome();
   if (name === 'progress') renderProgress();
   if (name === 'settings') renderSettings();
   if (name === 'accounts') renderAccounts();
+  if (name === 'reminders') renderReminders();
+  if (name === 'calendar') renderCalGrid();
 }
 function closeAdd() { showScreen('home'); }
 
@@ -795,13 +980,18 @@ function renderHome() {
   arc.setAttribute('stroke', pct > 1 ? '#ff453a' : pct > 0.8 ? '#ff9f0a' : '#fff');
 
   // badge
-  // streak: count consecutive days with at least one expense up to today
+  // streak: count consecutive days with at least one expense
+  // Start from today if it has expenses, otherwise start from yesterday
   let streak = 0;
-  const checkDate = new Date();
+  const streakStart = new Date();
+  const todayHasExp = state.expenses.some(function(e){ return e.date === streakStart.toISOString().slice(0,10); });
+  if (!todayHasExp) streakStart.setDate(streakStart.getDate() - 1);
   for (let i = 0; i < 365; i++) {
-    const ds = checkDate.toISOString().slice(0,10);
-    if (state.expenses.some(e => e.date === ds)) { streak++; checkDate.setDate(checkDate.getDate()-1); }
-    else break;
+    const ds = streakStart.toISOString().slice(0,10);
+    if (state.expenses.some(function(e){ return e.date === ds; })) {
+      streak++;
+      streakStart.setDate(streakStart.getDate() - 1);
+    } else { break; }
   }
   document.getElementById('streak-badge').textContent = '🔥 ' + streak;
 
@@ -972,6 +1162,23 @@ function renderSettings() {
     cl.appendChild(row);
   });
 
+  // accounts in settings
+  const acctList = document.getElementById('cat-acct-list');
+  if (acctList) {
+    acctList.innerHTML = '';
+    state.accounts.forEach(acct => {
+      const typeColors = {everyday:'#ff9f0a',savings:'#30d158',credit:'#0a84ff'};
+      const c = typeColors[acct.type]||acct.color;
+      const row = document.createElement('div');
+      row.className = 'settings-row';
+      row.onclick = () => openEditAcct(acct.id);
+      row.innerHTML = `<div class="settings-row-dot" style="background:${c}33;font-size:16px;display:flex;align-items:center;justify-content:center;">💳</div>
+        <div style="flex:1;"><div class="settings-row-label">${acct.name}</div><div style="font-size:12px;color:var(--text2);">${acct.bank}${acct.last4?' · ••••'+acct.last4:''}</div></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:${c};margin-right:8px;"></div>
+        <div class="settings-chevron"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div>`;
+      acctList.appendChild(row);
+    });
+  }
   // api key status
   document.getElementById('api-key-status').textContent = state.apiKey ? '✓ Set' : 'Not set';
 }
@@ -1210,12 +1417,37 @@ function renderColorSwatches(selected) {
   el.appendChild(custom);
 }
 
+const EMOJI_LIST = ['🍜','🚌','🛍️','📄','📱','🍽️','📦','⛳','💊','🏠','❤️','☕','🎬','✈️','🎵','🛒','💄','🏋️','🎮','📚','🌿','🐾','💡','🎯','⭐','🍺','🏖️','🚗','💰','🎁','🎨','🧴','👗','🔧','🍕'];
+let selectedEmoji = '📦';
+
+function toggleEmojiPicker() {
+  const grid = document.getElementById('emoji-picker-grid');
+  const inner = document.getElementById('emoji-grid-inner');
+  if (grid.style.display === 'none') {
+    inner.innerHTML = EMOJI_LIST.map(e => `<div onclick="pickEmoji('${e}')" style="font-size:24px;cursor:pointer;padding:4px;border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;">${e}</div>`).join('');
+    grid.style.display = 'block';
+  } else {
+    grid.style.display = 'none';
+  }
+}
+
+function pickEmoji(e) {
+  selectedEmoji = e;
+  document.getElementById('cat-emoji-display').textContent = e;
+  document.getElementById('emoji-picker-grid').style.display = 'none';
+}
+
 function openAddCat() {
   editingCatId = null;
+  selectedEmoji = '📦';
   selectedColor = PRESET_COLORS[Math.floor(Math.random()*PRESET_COLORS.length)];
   document.getElementById('cat-modal-title').textContent = '新增類別 Add category';
   document.getElementById('cat-name-zh').value = '';
   document.getElementById('cat-name-en').value = '';
+  document.getElementById('cat-emoji-display').textContent = selectedEmoji;
+  document.getElementById('emoji-picker-grid').style.display = 'none';
+  document.getElementById('cat-budget-slider').value = 200;
+  document.getElementById('cat-budget-val').textContent = 'A$200';
   document.getElementById('cat-delete-btn').style.display = 'none';
   renderColorSwatches(selectedColor);
   document.getElementById('cat-modal').classList.add('active');
@@ -1225,9 +1457,15 @@ function openEditCat(id) {
   editingCatId = id;
   const cat = getCat(id);
   selectedColor = cat.color;
+  selectedEmoji = cat.icon || '📦';
   document.getElementById('cat-modal-title').textContent = '編輯類別 Edit category';
   document.getElementById('cat-name-zh').value = cat.zh;
   document.getElementById('cat-name-en').value = cat.en;
+  document.getElementById('cat-emoji-display').textContent = selectedEmoji;
+  document.getElementById('emoji-picker-grid').style.display = 'none';
+  const budget = cat.budget || 200;
+  document.getElementById('cat-budget-slider').value = budget;
+  document.getElementById('cat-budget-val').textContent = 'A$' + budget;
   document.getElementById('cat-delete-btn').style.display = 'block';
   renderColorSwatches(selectedColor);
   document.getElementById('cat-modal').classList.add('active');
@@ -1315,6 +1553,317 @@ function confirmClear() {
 
 
 
+
+// ─── REMINDERS ────────────────────────────────────────────────────────────────
+let currentListId = null;
+let editingRemId = null;
+let selectedRemListId = null;
+let selectedPriority = 'none';
+let selectedListColor = '#0a84ff';
+
+function renderReminders() {
+  const rems = state.reminders || [];
+  const now = new Date();
+  const todayStr = today();
+
+  // Summary tiles
+  const grid = document.getElementById('rem-summary-grid');
+  if (!grid) return;
+  const todayCount  = rems.filter(function(r){ return !r.done && r.date === todayStr; }).length;
+  const upcomingCount = rems.filter(function(r){ return !r.done && r.date && r.date > todayStr; }).length;
+  const allCount    = rems.filter(function(r){ return !r.done; }).length;
+  const doneCount   = rems.filter(function(r){ return r.done; }).length;
+
+  const tiles = [
+    {label:'Today',    count:todayCount,   color:'#0a84ff', filter:'today',    icon:'<path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>'},
+    {label:'Upcoming', count:upcomingCount, color:'#ff453a', filter:'upcoming', icon:'<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>'},
+    {label:'All',      count:allCount,     color:'#3a3a3c', filter:'all',      icon:'<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>'},
+    {label:'Completed',count:doneCount,    color:'#3a3a3c', filter:'done',     icon:'<polyline points="20 6 9 17 4 12"/>'},
+  ];
+
+  grid.innerHTML = '';
+  tiles.forEach(function(t) {
+    const tile = document.createElement('div');
+    tile.className = 'rem-tile';
+    tile.style.background = t.color;
+    tile.onclick = function(){ openRemFilter(t.filter, t.label); };
+    tile.innerHTML = '<div class="rem-tile-top"><div class="rem-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + t.icon + '</svg></div><div class="rem-tile-count">' + t.count + '</div></div><div class="rem-tile-label">' + t.label + '</div>';
+    grid.appendChild(tile);
+  });
+
+  // Lists
+  const listsCard = document.getElementById('rem-lists-card');
+  if (!listsCard) return;
+  listsCard.innerHTML = '';
+  const lists = state.reminderLists || [];
+  lists.forEach(function(lst) {
+    const count = rems.filter(function(r){ return !r.done && r.listId === lst.id; }).length;
+    const row = document.createElement('div');
+    row.className = 'rem-list-row';
+
+    const dotEl = document.createElement('div');
+    dotEl.className = 'rem-list-dot';
+    dotEl.style.background = lst.color;
+    dotEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/></svg>';
+
+    const nameEl = document.createElement('div');
+    nameEl.className = 'rem-list-name';
+    nameEl.textContent = lst.name;
+    nameEl.onclick = function(){ openRemList(lst.id, lst.name); };
+
+    const countEl = document.createElement('div');
+    countEl.className = 'rem-list-count';
+    countEl.textContent = count;
+    countEl.onclick = function(){ openRemList(lst.id, lst.name); };
+
+    const editBtn = document.createElement('button');
+    editBtn.style.cssText = 'background:none;border:none;cursor:pointer;padding:4px 8px;color:#555;';
+    editBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
+    editBtn.onclick = function(e){ e.stopPropagation(); openEditList(lst.id); };
+
+    row.appendChild(dotEl);
+    row.appendChild(nameEl);
+    row.appendChild(countEl);
+    row.appendChild(editBtn);
+    listsCard.appendChild(row);
+  });
+}
+
+function openRemFilter(filter, label) {
+  currentListId = filter;
+  document.getElementById('rem-detail-title').textContent = label;
+  const rems = state.reminders || [];
+  const todayStr = today();
+  let filtered;
+  if (filter === 'today')    filtered = rems.filter(function(r){ return !r.done && r.date === todayStr; });
+  else if (filter === 'upcoming') filtered = rems.filter(function(r){ return !r.done && r.date && r.date > todayStr; });
+  else if (filter === 'all') filtered = rems.filter(function(r){ return !r.done; });
+  else if (filter === 'done') filtered = rems.filter(function(r){ return r.done; });
+  else filtered = [];
+  renderRemDetailList(filtered);
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById('screen-rem-detail').classList.add('active');
+}
+
+function openRemList(listId, listName) {
+  currentListId = listId;
+  document.getElementById('rem-detail-title').textContent = listName;
+  const filtered = (state.reminders || []).filter(function(r){ return r.listId === listId; });
+  renderRemDetailList(filtered);
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById('screen-rem-detail').classList.add('active');
+}
+
+function renderRemDetailList(rems) {
+  const list = document.getElementById('rem-detail-list');
+  if (!list) return;
+  list.innerHTML = '';
+  if (rems.length === 0) {
+    const empty = document.createElement('div');
+    empty.style.cssText = 'padding:20px 16px;font-size:14px;color:#555;text-align:center;';
+    empty.textContent = 'No reminders';
+    list.appendChild(empty);
+    return;
+  }
+  rems.forEach(function(r) {
+    const lst = (state.reminderLists||[]).find(function(l){ return l.id===r.listId; });
+    const color = lst ? lst.color : '#0a84ff';
+    const isOverdue = !r.done && r.date && r.date < today();
+    const priColors = {high:'#ff453a', medium:'#ff9f0a', low:'#0a84ff', none:''};
+
+    const row = document.createElement('div');
+    row.className = 'rem-item-row';
+    row.style.background = 'var(--card)';
+
+    const check = document.createElement('div');
+    check.className = 'rem-check' + (r.done?' done':'');
+    check.style.borderColor = r.done ? color : color;
+    check.style.background = r.done ? color : 'transparent';
+    check.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
+    check.onclick = function(e){ e.stopPropagation(); toggleReminder(r.id); };
+
+    const body = document.createElement('div');
+    body.className = 'rem-item-body';
+    const title = document.createElement('div');
+    title.className = 'rem-item-title' + (r.done?' done':'');
+    title.textContent = r.title;
+    body.appendChild(title);
+    if (r.date || r.notes) {
+      const meta = document.createElement('div');
+      meta.className = 'rem-item-meta' + (isOverdue?' overdue':'');
+      const parts = [];
+      if (r.date) parts.push(r.date);
+      if (r.notes) parts.push(r.notes);
+      meta.textContent = parts.join(' · ');
+      body.appendChild(meta);
+    }
+
+    row.appendChild(check);
+    row.appendChild(body);
+    if (r.priority && r.priority !== 'none') {
+      const flag = document.createElement('div');
+      flag.className = 'rem-flag';
+      flag.innerHTML = '<svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:' + (priColors[r.priority]||'var(--amber)') + ';stroke:none;"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="' + (priColors[r.priority]||'var(--amber)') + '" stroke-width="2"/></svg>';
+      row.appendChild(flag);
+    }
+    list.appendChild(row);
+  });
+}
+
+function toggleReminder(id) {
+  const r = (state.reminders||[]).find(function(r){ return r.id===id; });
+  if (r) { r.done = !r.done; save(); }
+  // re-render current view
+  if (currentListId) {
+    const lst = (state.reminderLists||[]).find(function(l){ return l.id===currentListId; });
+    if (lst) openRemList(currentListId, lst.name);
+    else openRemFilter(currentListId, currentListId);
+  }
+}
+
+function openAddReminder(listId) {
+  editingRemId = null;
+  selectedRemListId = listId && typeof listId === 'string' && !['today','upcoming','all','done'].includes(listId) ? listId : (state.reminderLists?.[0]?.id || null);
+  selectedPriority = 'none';
+  document.getElementById('rem-modal-title').textContent = 'New Reminder';
+  document.getElementById('rem-title-input').value = '';
+  document.getElementById('rem-notes-input').value = '';
+  document.getElementById('rem-date-input').value = '';
+  renderRemListChips();
+  document.querySelectorAll('[id^="pri-"]').forEach(function(c){ c.classList.remove('active'); });
+  document.getElementById('pri-none').classList.add('active');
+  document.getElementById('rem-modal').classList.add('active');
+}
+
+function renderRemListChips() {
+  const el = document.getElementById('rem-list-chips');
+  if (!el) return;
+  el.innerHTML = '';
+  (state.reminderLists||[]).forEach(function(lst) {
+    const chip = document.createElement('div');
+    chip.className = 'rem-opt-chip' + (lst.id===selectedRemListId?' active':'');
+    chip.style.borderColor = lst.id===selectedRemListId ? lst.color : 'transparent';
+    chip.style.color = lst.id===selectedRemListId ? lst.color : '';
+    chip.innerHTML = '<span style="width:8px;height:8px;border-radius:50%;background:' + lst.color + ';display:inline-block;"></span> ' + lst.name;
+    chip.onclick = function(){ selectedRemListId = lst.id; renderRemListChips(); };
+    el.appendChild(chip);
+  });
+}
+
+function selectPriority(p, el) {
+  selectedPriority = p;
+  document.querySelectorAll('[id^="pri-"]').forEach(function(c){ c.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+function saveReminder() {
+  const title = document.getElementById('rem-title-input').value.trim();
+  if (!title) { toast('⚠️ Enter a title'); return; }
+  const rem = {
+    id: Date.now(),
+    title: title,
+    notes: document.getElementById('rem-notes-input').value.trim(),
+    date: document.getElementById('rem-date-input').value || '',
+    listId: selectedRemListId,
+    priority: selectedPriority,
+    done: false,
+  };
+  if (!state.reminders) state.reminders = [];
+  state.reminders.push(rem);
+  save();
+  document.getElementById('rem-modal').classList.remove('active');
+  toast('✅ Reminder saved!');
+  renderReminders();
+}
+
+function closeRemModal(e) {
+  if (!e || e.target.id==='rem-modal') document.getElementById('rem-modal').classList.remove('active');
+}
+
+let editingListId = null;
+
+function renderListColorSwatches(selected) {
+  const swatches = document.getElementById('rem-list-color-swatches');
+  if (!swatches) return;
+  swatches.innerHTML = '';
+  PRESET_COLORS.forEach(function(c) {
+    const sw = document.createElement('div');
+    sw.className = 'color-swatch' + (c===selected?' selected':'');
+    sw.style.background = c;
+    sw.onclick = function(){
+      selectedListColor = c;
+      swatches.querySelectorAll('.color-swatch').forEach(function(s){ s.classList.remove('selected'); });
+      sw.classList.add('selected');
+    };
+    swatches.appendChild(sw);
+  });
+  // custom colour picker
+  const custom = document.createElement('input');
+  custom.type = 'color'; custom.value = selected;
+  custom.style.cssText = 'width:36px;height:36px;border-radius:50%;border:3px solid transparent;cursor:pointer;padding:0;background:none;';
+  custom.oninput = function(){
+    selectedListColor = custom.value;
+    swatches.querySelectorAll('.color-swatch').forEach(function(s){ s.classList.remove('selected'); });
+  };
+  swatches.appendChild(custom);
+}
+
+function openAddList() {
+  editingListId = null;
+  selectedListColor = PRESET_COLORS[0];
+  document.getElementById('rem-list-name-input').value = '';
+  document.getElementById('rem-list-modal-title').textContent = 'New List';
+  document.getElementById('rem-list-delete-btn').style.display = 'none';
+  renderListColorSwatches(selectedListColor);
+  document.getElementById('rem-list-modal').classList.add('active');
+}
+
+function openEditList(id) {
+  editingListId = id;
+  const lst = (state.reminderLists||[]).find(function(l){ return l.id===id; });
+  if (!lst) return;
+  selectedListColor = lst.color;
+  document.getElementById('rem-list-name-input').value = lst.name;
+  document.getElementById('rem-list-modal-title').textContent = 'Edit List';
+  document.getElementById('rem-list-delete-btn').style.display = 'block';
+  renderListColorSwatches(selectedListColor);
+  document.getElementById('rem-list-modal').classList.add('active');
+}
+
+function deleteReminderList() {
+  if (!editingListId) return;
+  if ((state.reminderLists||[]).length <= 1) { toast('Need at least one list'); return; }
+  if (!confirm('Delete this list and all its reminders?')) return;
+  state.reminders = (state.reminders||[]).filter(function(r){ return r.listId !== editingListId; });
+  state.reminderLists = (state.reminderLists||[]).filter(function(l){ return l.id !== editingListId; });
+  save();
+  document.getElementById('rem-list-modal').classList.remove('active');
+  renderReminders();
+  toast('🗑️ List deleted');
+}
+
+function saveReminderList() {
+  const name = document.getElementById('rem-list-name-input').value.trim();
+  if (!name) { toast('⚠️ Enter a list name'); return; }
+  if (!state.reminderLists) state.reminderLists = [];
+  if (editingListId) {
+    const lst = state.reminderLists.find(function(l){ return l.id===editingListId; });
+    if (lst) { lst.name = name; lst.color = selectedListColor; }
+    toast('✅ List updated!');
+  } else {
+    state.reminderLists.push({id:'rl_'+Date.now(), name:name, color:selectedListColor});
+    toast('✅ List created!');
+  }
+  save();
+  document.getElementById('rem-list-modal').classList.remove('active');
+  renderReminders();
+}
+
+function closeListModal(e) {
+  if (!e || e.target.id==='rem-list-modal') document.getElementById('rem-list-modal').classList.remove('active');
+}
+
+
 // ─── CALENDAR ─────────────────────────────────────────────────────────────────
 let calYear = new Date().getFullYear();
 let calMonth = new Date().getMonth();
@@ -1344,23 +1893,17 @@ function shiftCalMonth(dir) {
 }
 
 function renderCalGrid() {
-  const months = ['January','February','March','April','May','June',
-                  'July','August','September','October','November','December'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   document.getElementById('cal-month-label').textContent = months[calMonth] + ' ' + calYear;
-
   const grid = document.getElementById('cal-grid');
   grid.innerHTML = '';
-
   const now = new Date();
   const firstDay = new Date(calYear, calMonth, 1);
-  // Monday-based: Mon=0 ... Sun=6
   let startOffset = firstDay.getDay() - 1;
   if (startOffset < 0) startOffset = 6;
-
   const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
   const dailyBudget = state.totalBudget / 30;
 
-  // empty cells
   for (let i = 0; i < startOffset; i++) {
     const empty = document.createElement('div');
     empty.className = 'cal-cell empty';
@@ -1373,45 +1916,67 @@ function renderCalGrid() {
     const isToday = (d.getFullYear()===now.getFullYear() && d.getMonth()===now.getMonth() && d.getDate()===now.getDate());
     const isFuture = d > now;
     const isSelected = calSelectedDate === dateStr;
-
-    const dayExps = state.expenses.filter(e => e.date === dateStr);
-    const dayTotal = dayExps.reduce((s, e) => s + e.amount, 0);
-
-    // find top category for the day
+    const dayExps = state.expenses.filter(function(e){ return e.date === dateStr; });
+    const dayTotal = dayExps.reduce(function(s,e){ return s+e.amount; }, 0);
     const catTotals = {};
-    dayExps.forEach(e => { catTotals[e.catId] = (catTotals[e.catId]||0) + e.amount; });
-    const topCatId = Object.entries(catTotals).sort((a,b)=>b[1]-a[1])[0]?.[0];
-    const topCat = topCatId ? getCat(topCatId) : null;
+    dayExps.forEach(function(e){ catTotals[e.catId] = (catTotals[e.catId]||0) + e.amount; });
+    const topEntry = Object.entries(catTotals).sort(function(a,b){ return b[1]-a[1]; })[0];
+    const topCat = topEntry ? getCat(topEntry[0]) : null;
     const ringColor = topCat ? topCat.color : '#2a2a2a';
     const pct = Math.min(dayTotal / dailyBudget, 1);
     const hasData = dayExps.length > 0;
-
-    const cell = document.createElement('div');
-    cell.className = 'cal-cell' + (isToday?' today':'') + (isFuture?' future':'') + (isSelected?' selected':'');
-    cell.onclick = () => selectCalDay(dateStr, day);
-
-    const circumference = 2 * Math.PI * 18;
+    const C = 2 * Math.PI * 18;
     const trackColor = hasData ? ringColor + '30' : '#1e1e1e';
-    const fillOffset = circumference - (hasData ? pct * circumference : 0);
     const strokeColor = hasData ? ringColor : '#2a2a2a';
     const strokeW = hasData ? 4 : 3;
+    const fillOffset = C - (hasData ? pct * C : 0);
 
-    // green dot for days with expenses logged
-    const dot = hasData ? `<div style="width:4px;height:4px;border-radius:50%;background:${ringColor};margin-bottom:1px;"></div>` : '<div style="width:4px;height:4px;"></div>';
+    const cell = document.createElement('div');
+    let cls = 'cal-cell';
+    if (isToday) cls += ' today';
+    if (isFuture) cls += ' future';
+    if (isSelected) cls += ' selected';
+    cell.className = cls;
+    cell.onclick = (function(ds, dy){ return function(){ selectCalDay(ds, dy); }; })(dateStr, day);
 
-    cell.innerHTML = `
-      <div class="cal-cell-date" style="${isToday?'background:#fff;color:#000;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;':''}">${day}</div>
-      <div class="cal-donut-wrap">
-        <svg width="44" height="44" viewBox="0 0 44 44">
-          <circle cx="22" cy="22" r="18" fill="none" stroke="${trackColor}" stroke-width="${strokeW}"/>
-          <circle cx="22" cy="22" r="18" fill="none" stroke="${strokeColor}" stroke-width="${strokeW}"
-            stroke-dasharray="${circumference.toFixed(2)}" stroke-dashoffset="${fillOffset.toFixed(2)}"
-            stroke-linecap="round" transform="rotate(-90 22 22)"
-            ${!hasData?'opacity="0.3"':''}/>
-        </svg>
-        <div class="cal-donut-inner" style="color:${strokeColor};">${hasData ? (pct>=1?'!':topCat?.icon||'') : ''}</div>
-      </div>
-      ${dot}`;
+    // date label
+    const dateEl = document.createElement('div');
+    dateEl.className = 'cal-cell-date';
+    if (isToday) {
+      dateEl.style.cssText = 'background:#fff;color:#000;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;';
+    }
+    dateEl.textContent = day;
+    cell.appendChild(dateEl);
+
+    // donut SVG
+    const wrap = document.createElement('div');
+    wrap.className = 'cal-donut-wrap';
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('width', '44'); svg.setAttribute('height', '44'); svg.setAttribute('viewBox', '0 0 44 44');
+    const track = document.createElementNS(ns, 'circle');
+    track.setAttribute('cx','22'); track.setAttribute('cy','22'); track.setAttribute('r','18');
+    track.setAttribute('fill','none'); track.setAttribute('stroke', trackColor); track.setAttribute('stroke-width', strokeW);
+    const fill = document.createElementNS(ns, 'circle');
+    fill.setAttribute('cx','22'); fill.setAttribute('cy','22'); fill.setAttribute('r','18');
+    fill.setAttribute('fill','none'); fill.setAttribute('stroke', strokeColor); fill.setAttribute('stroke-width', strokeW);
+    fill.setAttribute('stroke-dasharray', C.toFixed(2)); fill.setAttribute('stroke-dashoffset', fillOffset.toFixed(2));
+    fill.setAttribute('stroke-linecap','round'); fill.setAttribute('transform','rotate(-90 22 22)');
+    if (!hasData) fill.setAttribute('opacity','0.3');
+    svg.appendChild(track); svg.appendChild(fill);
+    const inner = document.createElement('div');
+    inner.className = 'cal-donut-inner';
+    inner.style.color = strokeColor;
+    inner.textContent = hasData ? (pct >= 1 ? '!' : (topCat ? topCat.icon : '')) : '';
+    wrap.appendChild(svg); wrap.appendChild(inner);
+    cell.appendChild(wrap);
+
+    // dot
+    const dot = document.createElement('div');
+    dot.style.cssText = 'width:4px;height:4px;border-radius:50%;margin-top:1px;';
+    if (hasData) dot.style.background = ringColor;
+    cell.appendChild(dot);
+
     grid.appendChild(cell);
   }
 }
@@ -1419,42 +1984,53 @@ function renderCalGrid() {
 function selectCalDay(dateStr, day) {
   calSelectedDate = dateStr;
   renderCalGrid();
-
   const detail = document.getElementById('cal-day-detail');
   const title = document.getElementById('cal-day-detail-title');
   const list = document.getElementById('cal-day-detail-list');
   const totalEl = document.getElementById('cal-day-detail-total');
-
-  const dayExps = state.expenses.filter(e => e.date === dateStr)
-    .sort((a,b) => b.amount - a.amount);
-
+  const dayExps = state.expenses.filter(function(e){ return e.date === dateStr; })
+    .sort(function(a,b){ return b.amount - a.amount; });
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const d = new Date(dateStr + 'T00:00:00');
   title.textContent = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
-
+  list.innerHTML = '';
   if (dayExps.length === 0) {
-    list.innerHTML = '<div style="font-size:13px;color:#555;padding:4px 0;">No expenses recorded</div>';
+    const empty = document.createElement('div');
+    empty.style.cssText = 'font-size:13px;color:#555;padding:4px 0;';
+    empty.textContent = 'No expenses recorded';
+    list.appendChild(empty);
     totalEl.textContent = '';
   } else {
-    list.innerHTML = dayExps.map(e => {
+    dayExps.forEach(function(e) {
       const cat = getCat(e.catId);
-      const acct = state.accounts?.find(a=>a.id===e.acctId);
-      return `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:0.5px solid #2a2a2a;">
-        <div style="width:32px;height:32px;border-radius:10px;background:${cat.color}22;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">${cat.icon}</div>
-        <div style="flex:1;min-width:0;">
-          <div style="font-size:13px;font-weight:500;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${e.desc||cat.en}</div>
-          <div style="font-size:11px;color:#555;margin-top:1px;">${cat.en}${acct?' · '+acct.name:''}</div>
-        </div>
-        <div style="font-size:14px;font-weight:600;color:${cat.color};">A$${e.amount.toFixed(2)}</div>
-      </div>`;
-    }).join('');
-    const total = dayExps.reduce((s,e)=>s+e.amount,0);
+      const acct = state.accounts ? state.accounts.find(function(a){ return a.id===e.acctId; }) : null;
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:0.5px solid #2a2a2a;';
+      const icon = document.createElement('div');
+      icon.style.cssText = 'width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;background:' + cat.color + '22;';
+      icon.textContent = cat.icon;
+      const info = document.createElement('div');
+      info.style.cssText = 'flex:1;min-width:0;';
+      const name = document.createElement('div');
+      name.style.cssText = 'font-size:13px;font-weight:500;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
+      name.textContent = e.desc || cat.en;
+      const meta = document.createElement('div');
+      meta.style.cssText = 'font-size:11px;color:#555;margin-top:1px;';
+      meta.textContent = cat.en + (acct ? ' · ' + acct.name : '');
+      info.appendChild(name); info.appendChild(meta);
+      const amt = document.createElement('div');
+      amt.style.cssText = 'font-size:14px;font-weight:600;color:' + cat.color + ';';
+      amt.textContent = 'A$' + e.amount.toFixed(2);
+      row.appendChild(icon); row.appendChild(info); row.appendChild(amt);
+      list.appendChild(row);
+    });
+    const total = dayExps.reduce(function(s,e){ return s+e.amount; }, 0);
     totalEl.textContent = dayExps.length + ' transaction' + (dayExps.length>1?'s':'') + ' · Total A$' + total.toFixed(2);
   }
-
   detail.style.display = 'block';
-  setTimeout(() => detail.scrollIntoView({behavior:'smooth', block:'nearest'}), 100);
+  setTimeout(function(){ detail.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 100);
 }
+
 
 // ─── ACCOUNTS ─────────────────────────────────────────────────────────────────
 let editingAcctId = null;
