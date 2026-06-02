@@ -41,6 +41,29 @@ body{display:flex;flex-direction:column;height:100dvh;}
 .fab-btn{width:58px;height:58px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:all;flex-shrink:0;}
 .fab-btn svg{width:26px;height:26px;stroke:#000;fill:none;stroke-width:2.5;stroke-linecap:round;}
 
+
+/* CALENDAR ICON BTN */
+.cal-icon-btn{width:36px;height:36px;background:#1c1c1e;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.cal-icon-btn svg{width:18px;height:18px;stroke:#fff;}
+
+/* CALENDAR SCREEN */
+.cal-screen-header{flex-shrink:0;background:#000;}
+.cal-nav-arrow{background:none;border:none;cursor:pointer;padding:4px;color:#fff;}
+.cal-nav-arrow svg{width:22px;height:22px;}
+.cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);padding:4px 12px 8px;gap:4px;}
+.cal-weekdays span{text-align:center;font-size:12px;color:#555;font-weight:500;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:0 12px 16px;}
+.cal-cell{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 2px;border-radius:12px;transition:background .15s;}
+.cal-cell:active{background:#1c1c1e;}
+.cal-cell.empty{pointer-events:none;}
+.cal-cell.future{opacity:.25;pointer-events:none;}
+.cal-cell-date{font-size:12px;font-weight:500;color:#8e8e93;}
+.cal-cell.today .cal-cell-date{color:#fff;font-weight:700;}
+.cal-cell.selected{background:#1c1c1e;}
+.cal-cell-today-dot{width:4px;height:4px;border-radius:50%;background:#fff;margin-top:-1px;}
+.cal-donut-wrap{position:relative;width:44px;height:44px;}
+.cal-donut-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;}
+
 /* ACCOUNTS SCREEN */
 .acct-header{padding:16px 20px 8px;flex-shrink:0;}
 .acct-title{font-size:28px;font-weight:700;letter-spacing:-.5px;}
@@ -271,7 +294,12 @@ body{display:flex;flex-direction:column;height:100dvh;}
 <div class="home-header">
     <div class="app-row">
       <div class="app-name">Expenses</div>
+      <div style="display:flex;align-items:center;gap:8px;">
       <div class="streak-badge" id="streak-badge">🔥 0</div>
+      <div class="cal-icon-btn" onclick="openCalendar()" aria-label="Open calendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+    </div>
     </div>
     <div class="cal-strip" id="cal-strip"></div>
   </div>
@@ -476,6 +504,33 @@ body{display:flex;flex-direction:column;height:100dvh;}
   </div>
 </div>
 
+<!-- CALENDAR SCREEN -->
+<div class="screen" id="screen-calendar">
+  <div class="cal-screen-header">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 8px;">
+      <button class="cal-nav-arrow" onclick="shiftCalMonth(-1)" aria-label="Previous month">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div id="cal-month-label" style="font-size:20px;font-weight:600;color:#fff;"></div>
+      <button class="cal-nav-arrow" onclick="shiftCalMonth(1)" aria-label="Next month">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="cal-weekdays">
+      <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+    </div>
+  </div>
+  <div class="scroll-body" style="padding-bottom:120px;">
+    <div class="cal-grid" id="cal-grid"></div>
+    <!-- Day detail panel -->
+    <div id="cal-day-detail" style="display:none;margin:0 16px;background:#1c1c1e;border-radius:20px;padding:16px;margin-top:4px;">
+      <div id="cal-day-detail-title" style="font-size:16px;font-weight:600;color:#fff;margin-bottom:12px;"></div>
+      <div id="cal-day-detail-list"></div>
+      <div id="cal-day-detail-total" style="font-size:13px;color:#8e8e93;margin-top:10px;padding-top:10px;border-top:0.5px solid #3a3a3c;"></div>
+    </div>
+  </div>
+</div>
+
 <!-- NAV BAR -->
 <div class="nav-bar">
   <div class="nav-pill">
@@ -565,10 +620,14 @@ const DEFAULT_CATS = [
 ];
 
 const DEFAULT_ACCOUNTS = [
-  {id:'acct1', name:'CommBank Everyday', bank:'CommBank', last4:'4821', type:'everyday', color:'#ff9f0a'},
-  {id:'acct2', name:'ING Savings',       bank:'ING',      last4:'2934', type:'savings',  color:'#30d158'},
-  {id:'acct3', name:'ANZ Credit Card',   bank:'ANZ',      last4:'7710', type:'credit',   color:'#0a84ff'},
+  {id:'acct1', name:'Everyday Debit', bank:'CommBank', last4:'', type:'everyday', color:'#ff9f0a'},
+  {id:'acct2', name:'Up Bank',        bank:'Up',       last4:'', type:'savings',  color:'#30d158'},
+  {id:'acct3', name:'Credit Card',    bank:'ANZ',      last4:'', type:'credit',   color:'#0a84ff'},
 ];
+
+
+
+
 
 let state = {
   expenses: [],
@@ -583,11 +642,31 @@ let editingTxId = null;
 let selectedCatAdd = null;
 let selectedColor = PRESET_COLORS[3];
 
+// PRE-LOADED HISTORICAL DATA
+const HISTORICAL_EXPENSES = [{"id": 1000, "amount": 175.0, "desc": "Plumbing Call Out Fee", "date": "2026-03-18", "catId": "home", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1001, "amount": 110.0, "desc": "Plumbing Booking Fee", "date": "2026-03-16", "catId": "home", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1002, "amount": 31.46, "desc": "Shein - Gym Clothes And Equitments", "date": "2026-03-20", "catId": "shopping", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1003, "amount": 47.0, "desc": "Spotlight - Leather Equipments", "date": "2026-03-31", "catId": "shopping", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1004, "amount": 51.0, "desc": "Aesop - Scent", "date": "2026-04-01", "catId": "shopping", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1005, "amount": 4.15, "desc": "Muji - Hand Soap Bottle", "date": "2026-04-01", "catId": "shopping", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1006, "amount": 19.95, "desc": "Jd Sport - Hat", "date": "2026-04-01", "catId": "shopping", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1007, "amount": 45.0, "desc": "Jd Sport - Shorts", "date": "2026-04-03", "catId": "shopping", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1008, "amount": 19.54, "desc": "Temu - House Items", "date": "2026-04-07", "catId": "shopping", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1009, "amount": 12.17, "desc": "Temu - House Items", "date": "2026-04-07", "catId": "shopping", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1010, "amount": 15.32, "desc": "Temu - House Items", "date": "2026-04-07", "catId": "shopping", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1011, "amount": 41.5, "desc": "Kmart", "date": "2026-04-10", "catId": "shopping", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1012, "amount": 43.5, "desc": "Tallow - Skin Care", "date": "2026-04-16", "catId": "shopping", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1013, "amount": 28.84, "desc": "Amazon - House Items", "date": "2026-03-20", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1014, "amount": 65.51, "desc": "Amazon - House Items", "date": "2026-03-20", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1015, "amount": 313.78, "desc": "Leffler - Leather Tools", "date": "2026-03-23", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1016, "amount": 9.84, "desc": "Amazon - House Items", "date": "2026-03-23", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1017, "amount": 246.44, "desc": "Ikea - House Items", "date": "2026-03-23", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1018, "amount": 189.95, "desc": "Feurage - House Item", "date": "2026-03-25", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1019, "amount": 6.65, "desc": "International Trans Fee", "date": "2026-03-25", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1020, "amount": 77.0, "desc": "Amazon - House Items", "date": "2026-03-26", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1021, "amount": 39.99, "desc": "Milligram - Birthday Cards", "date": "2026-03-30", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1022, "amount": 89.79, "desc": "Bunnings - House Items", "date": "2026-04-04", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1023, "amount": 14.5, "desc": "Kmart - House Items", "date": "2026-04-04", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1024, "amount": 150.99, "desc": "Ikea - House Items", "date": "2026-04-04", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1025, "amount": 90.0, "desc": "Aesop - Skin Care", "date": "2026-04-12", "catId": "shopping", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1026, "amount": 30.55, "desc": "Mr Dad", "date": "2026-03-24", "catId": "food", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1027, "amount": 6.62, "desc": "Mr Dad", "date": "2026-04-01", "catId": "food", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1028, "amount": 9.68, "desc": "Mr Dad", "date": "2026-04-02", "catId": "food", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1029, "amount": 43.94, "desc": "Mr Dad", "date": "2026-04-07", "catId": "food", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1030, "amount": 74.26, "desc": "Woolworth", "date": "2026-04-08", "catId": "food", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1031, "amount": 17.99, "desc": "Chemist Warehouse", "date": "2026-04-08", "catId": "food", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1032, "amount": 44.22, "desc": "Coles", "date": "2026-04-08", "catId": "food", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1033, "amount": 68.0, "desc": "Kt Mart", "date": "2026-04-16", "catId": "food", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1034, "amount": 13.99, "desc": "Kt Mart", "date": "2026-04-16", "catId": "food", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1035, "amount": 44.49, "desc": "Chemist Warehouse", "date": "2026-04-16", "catId": "food", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1036, "amount": 28.51, "desc": "Mr Dad", "date": "2026-04-18", "catId": "food", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1037, "amount": 49.95, "desc": "Mr Dad", "date": "2026-04-19", "catId": "food", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1038, "amount": 9.16, "desc": "Mr Dad", "date": "2026-03-25", "catId": "food", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1039, "amount": 10.69, "desc": "Mr Dad", "date": "2026-03-26", "catId": "food", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1040, "amount": 25.47, "desc": "Mr Dad", "date": "2026-03-27", "catId": "food", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1041, "amount": 4.07, "desc": "Mr Dad", "date": "2026-03-28", "catId": "food", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1042, "amount": 10.91, "desc": "Mr Dad", "date": "2026-03-31", "catId": "food", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1043, "amount": 24.96, "desc": "Mr Dad", "date": "2026-04-05", "catId": "food", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1044, "amount": 5.09, "desc": "Mr Dad", "date": "2026-04-06", "catId": "food", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1045, "amount": 14.76, "desc": "Mr Dad", "date": "2026-04-10", "catId": "food", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1046, "amount": 12.95, "desc": "Castor Oil", "date": "2026-04-12", "catId": "food", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1047, "amount": 50.72, "desc": "Mr Dad", "date": "2026-04-13", "catId": "food", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1048, "amount": 29.0, "desc": "Mr Dad", "date": "2026-04-18", "catId": "food", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1049, "amount": 50.44, "desc": "Mr Dad", "date": "2026-03-27", "catId": "food", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1050, "amount": 88.0, "desc": "Woolworth", "date": "2026-03-30", "catId": "food", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1051, "amount": 107.1, "desc": "L Kiosk", "date": "2026-03-31", "catId": "food", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1052, "amount": 56.73, "desc": "Woolworth", "date": "2026-04-12", "catId": "food", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1053, "amount": 10.66, "desc": "Boost Juice", "date": "2026-04-01", "catId": "dining", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1054, "amount": 34.0, "desc": "Maccas", "date": "2026-04-04", "catId": "dining", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1055, "amount": 4.5, "desc": "Yarrabend - Coffee", "date": "2026-04-08", "catId": "dining", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1056, "amount": 4.5, "desc": "Yarrabend - Coffee", "date": "2026-04-08", "catId": "dining", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1057, "amount": 37.8, "desc": "Soul Soul - Coffee", "date": "2026-04-11", "catId": "dining", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1058, "amount": 0.51, "desc": "Taiwan Village", "date": "2026-03-19", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1059, "amount": 5.89, "desc": "Boogie House Hotpot", "date": "2026-03-23", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1060, "amount": 4.5, "desc": "Coffee", "date": "2026-03-25", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1061, "amount": 4.95, "desc": "Coffee", "date": "2026-03-26", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1062, "amount": 6.5, "desc": "Coffee", "date": "2026-03-27", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1063, "amount": 4.95, "desc": "Coffee", "date": "2026-03-30", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1064, "amount": 9.36, "desc": "Coffee", "date": "2026-03-31", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1065, "amount": 6.5, "desc": "Coffee", "date": "2026-04-02", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1066, "amount": 11.0, "desc": "Coffee", "date": "2026-04-05", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1067, "amount": 4.5, "desc": "Coffee", "date": "2026-04-07", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1068, "amount": 5.0, "desc": "Ikea - Coffee", "date": "2026-04-08", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1069, "amount": 26.95, "desc": "Takeaway", "date": "2026-04-11", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1070, "amount": 8.35, "desc": "Coffee", "date": "2026-04-12", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1071, "amount": 9.09, "desc": "Sushi", "date": "2026-04-12", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1072, "amount": 5.4, "desc": "Coffee", "date": "2026-04-13", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1073, "amount": 4.5, "desc": "Coffee", "date": "2026-04-16", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1074, "amount": 30.0, "desc": "Sevenseeds - Coffee", "date": "2026-04-17", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1075, "amount": 10.66, "desc": "Bamh Mi", "date": "2026-04-18", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1076, "amount": 10.4, "desc": "Coffee", "date": "2026-03-24", "catId": "dining", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1077, "amount": 41.23, "desc": "Easi Delivery", "date": "2026-03-16", "catId": "dining", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1078, "amount": 30.45, "desc": "Koi Dessert", "date": "2026-03-17", "catId": "dining", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1079, "amount": 496.29, "desc": "Matilda Dinner", "date": "2026-03-17", "catId": "dining", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1080, "amount": 3.3, "desc": "Linkt", "date": "2026-04-01", "catId": "transport", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1081, "amount": 14.91, "desc": "Uber", "date": "2026-03-16", "catId": "transport", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1082, "amount": 28.81, "desc": "Uber", "date": "2026-03-17", "catId": "transport", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1083, "amount": 1.02, "desc": "Parking", "date": "2026-03-18", "catId": "transport", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1084, "amount": 15.0, "desc": "Paystay", "date": "2026-03-28", "catId": "transport", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1085, "amount": 19.91, "desc": "Uber", "date": "2026-04-07", "catId": "transport", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1086, "amount": 19.35, "desc": "Uber", "date": "2026-03-17", "catId": "transport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1087, "amount": 1.54, "desc": "Easypark", "date": "2026-03-18", "catId": "transport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1088, "amount": 9.8, "desc": "Easypark", "date": "2026-03-23", "catId": "transport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1089, "amount": 2.28, "desc": "Easypark", "date": "2026-03-24", "catId": "transport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1090, "amount": 14.78, "desc": "Easypark", "date": "2026-03-26", "catId": "transport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1091, "amount": 1.9, "desc": "Easypark", "date": "2026-03-27", "catId": "transport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1092, "amount": 4.23, "desc": "Easypark", "date": "2026-03-28", "catId": "transport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1093, "amount": 100.05, "desc": "Car Fuel", "date": "2026-03-29", "catId": "transport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1094, "amount": 98.5, "desc": "Car Fuel", "date": "2026-04-16", "catId": "transport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1095, "amount": 1.76, "desc": "Easypark", "date": "2026-04-17", "catId": "transport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1096, "amount": 14.99, "desc": "Apple", "date": "2026-04-07", "catId": "subs", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1097, "amount": 29.99, "desc": "Apple - Cal Ai", "date": "2026-03-18", "catId": "subs", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1098, "amount": 49.99, "desc": "Apple - Cal Ai", "date": "2026-03-22", "catId": "subs", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1099, "amount": 13.0, "desc": "Chatgpt", "date": "2026-04-01", "catId": "subs", "acctId": "acct2", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1100, "amount": 20.99, "desc": "Netflix", "date": "2026-03-16", "catId": "subs", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1101, "amount": 15.99, "desc": "Spotify", "date": "2026-03-17", "catId": "subs", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1102, "amount": 23.95, "desc": "Anytime Fitness", "date": "2026-03-20", "catId": "subs", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1103, "amount": 23.95, "desc": "Anytime Fitness", "date": "2026-03-27", "catId": "subs", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1104, "amount": 93.75, "desc": "Adobe", "date": "2026-03-31", "catId": "subs", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1105, "amount": 79.99, "desc": "Adobe", "date": "2026-04-03", "catId": "subs", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1106, "amount": 15.01, "desc": "Mid Journey Ai", "date": "2026-04-08", "catId": "subs", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1107, "amount": 56.73, "desc": "Adobe", "date": "2026-04-11", "catId": "subs", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1108, "amount": 20.99, "desc": "Netflix", "date": "2026-04-16", "catId": "subs", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1109, "amount": 2021.4, "desc": "Fo Guang Shan", "date": "2026-03-17", "catId": "donation", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1110, "amount": 61.49, "desc": "Paypal Balance", "date": "2026-03-18", "catId": "bills", "acctId": "acct1", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1111, "amount": 150.0, "desc": "Optus", "date": "2026-03-17", "catId": "bills", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1112, "amount": 79.0, "desc": "Origin - Internet", "date": "2026-04-07", "catId": "bills", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1113, "amount": 45.51, "desc": "Optus", "date": "2026-04-13", "catId": "bills", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1114, "amount": 70.69, "desc": "Origin - Internet", "date": "2026-04-16", "catId": "bills", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1115, "amount": 177.0, "desc": "Yarrabend Golf", "date": "2026-03-18", "catId": "sport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1116, "amount": 118.0, "desc": "Yarrabend Golf", "date": "2026-03-18", "catId": "sport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1117, "amount": 88.22, "desc": "Anytime Fitness Keyfob + Initial", "date": "2026-03-18", "catId": "sport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1118, "amount": 38.0, "desc": "Yarrabend Golf", "date": "2026-03-18", "catId": "sport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1119, "amount": 15.3, "desc": "Yarrabend Golf", "date": "2026-03-21", "catId": "sport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1120, "amount": 448.64, "desc": "Yarrabend Golf - Membership Upgrade", "date": "2026-03-24", "catId": "sport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1121, "amount": 22.5, "desc": "Yarrabend Golf", "date": "2026-03-29", "catId": "sport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1122, "amount": 57.0, "desc": "Yarrabend Golf", "date": "2026-03-29", "catId": "sport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1123, "amount": 146.95, "desc": "Freeway Golf", "date": "2026-04-01", "catId": "sport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1124, "amount": 23.95, "desc": "Anytime Fitness", "date": "2026-04-07", "catId": "sport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1125, "amount": 23.85, "desc": "Anytime Fitness", "date": "2026-04-10", "catId": "sport", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1126, "amount": 290.0, "desc": "Psychology", "date": "2026-03-27", "catId": "medical", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}, {"id": 1127, "amount": 180.0, "desc": "Psychology", "date": "2026-03-30", "catId": "medical", "acctId": "acct3", "notes": "", "time": "", "scanned": false, "receiptThumb": null}];
+const HISTORICAL_CATEGORIES = [{"id": "food", "zh": "\u98df\u54c1 Grocery", "en": "Grocery", "color": "#ff9f0a", "budget": 1000, "icon": "\ud83d\uded2"}, {"id": "transport", "zh": "\u4ea4\u901a Transport", "en": "Transport", "color": "#0a84ff", "budget": 400, "icon": "\ud83d\ude8c"}, {"id": "shopping", "zh": "\u8cfc\u7269 Shopping", "en": "Shopping", "color": "#bf5af2", "budget": 600, "icon": "\ud83d\udecd\ufe0f"}, {"id": "bills", "zh": "\u5e33\u55ae Bills", "en": "Bills", "color": "#ff453a", "budget": 300, "icon": "\ud83d\udcc4"}, {"id": "subs", "zh": "\u8a02\u95b1 Subscript", "en": "Subscriptions", "color": "#5e5ce6", "budget": 200, "icon": "\ud83d\udcf1"}, {"id": "dining", "zh": "\u9910\u5ef3 Dining", "en": "Food & Dining", "color": "#ff375f", "budget": 500, "icon": "\ud83c\udf7d\ufe0f"}, {"id": "other", "zh": "\u5176\u4ed6 Other", "en": "Other", "color": "#8e8e93", "budget": 200, "icon": "\ud83d\udce6"}, {"id": "sport", "zh": "\u904b\u52d5 Sport", "en": "Sport", "color": "#30d158", "budget": 300, "icon": "\u26f3"}, {"id": "medical", "zh": "\u91ab\u7642 Medical", "en": "Medical", "color": "#1ec8e7", "budget": 200, "icon": "\ud83d\udc8a"}, {"id": "home", "zh": "\u4f4f\u5c4b Home", "en": "Home Repair", "color": "#ffd60a", "budget": 200, "icon": "\ud83c\udfe0"}, {"id": "donation", "zh": "\u6350\u6b3e Donation", "en": "Donation", "color": "#ff6b6b", "budget": 100, "icon": "\u2764\ufe0f"}];
+const HISTORICAL_ACCOUNTS = [{"id": "acct1", "name": "Everyday Debit", "bank": "CommBank", "last4": "", "type": "everyday", "color": "#ff9f0a"}, {"id": "acct2", "name": "Up Bank", "bank": "Up", "last4": "", "type": "savings", "color": "#30d158"}, {"id": "acct3", "name": "Credit Card", "bank": "ANZ", "last4": "", "type": "credit", "color": "#0a84ff"}];
+
 function load() {
   try {
     const s = localStorage.getItem('wallet_v2');
-    if (s) { const p = JSON.parse(s); state = {...state,...p}; }
-  } catch(e){}
+    if (s) {
+      const p = JSON.parse(s);
+      state = {...state,...p};
+    } else {
+      // First load — seed with historical data
+      state.expenses = HISTORICAL_EXPENSES;
+      state.categories = HISTORICAL_CATEGORIES;
+      state.accounts = HISTORICAL_ACCOUNTS;
+      state.totalBudget = 3000;
+      save();
+    }
+  } catch(e){
+    state.expenses = HISTORICAL_EXPENSES;
+    state.categories = HISTORICAL_CATEGORIES;
+    state.accounts = HISTORICAL_ACCOUNTS;
+    save();
+  }
 }
 function save() {
   localStorage.setItem('wallet_v2', JSON.stringify(state));
@@ -1234,6 +1313,148 @@ function confirmClear() {
   }
 }
 
+
+
+// ─── CALENDAR ─────────────────────────────────────────────────────────────────
+let calYear = new Date().getFullYear();
+let calMonth = new Date().getMonth();
+let calSelectedDate = null;
+
+function openCalendar() {
+  calYear = new Date().getFullYear();
+  calMonth = new Date().getMonth();
+  calSelectedDate = null;
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('screen-calendar').classList.add('active');
+  renderCalGrid();
+}
+
+function closeCalendar() {
+  showScreen('home');
+}
+
+function shiftCalMonth(dir) {
+  calMonth += dir;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0)  { calMonth = 11; calYear--; }
+  calSelectedDate = null;
+  document.getElementById('cal-day-detail').style.display = 'none';
+  renderCalGrid();
+}
+
+function renderCalGrid() {
+  const months = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+  document.getElementById('cal-month-label').textContent = months[calMonth] + ' ' + calYear;
+
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = '';
+
+  const now = new Date();
+  const firstDay = new Date(calYear, calMonth, 1);
+  // Monday-based: Mon=0 ... Sun=6
+  let startOffset = firstDay.getDay() - 1;
+  if (startOffset < 0) startOffset = 6;
+
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const dailyBudget = state.totalBudget / 30;
+
+  // empty cells
+  for (let i = 0; i < startOffset; i++) {
+    const empty = document.createElement('div');
+    empty.className = 'cal-cell empty';
+    grid.appendChild(empty);
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const d = new Date(calYear, calMonth, day);
+    const dateStr = d.toISOString().slice(0, 10);
+    const isToday = (d.getFullYear()===now.getFullYear() && d.getMonth()===now.getMonth() && d.getDate()===now.getDate());
+    const isFuture = d > now;
+    const isSelected = calSelectedDate === dateStr;
+
+    const dayExps = state.expenses.filter(e => e.date === dateStr);
+    const dayTotal = dayExps.reduce((s, e) => s + e.amount, 0);
+
+    // find top category for the day
+    const catTotals = {};
+    dayExps.forEach(e => { catTotals[e.catId] = (catTotals[e.catId]||0) + e.amount; });
+    const topCatId = Object.entries(catTotals).sort((a,b)=>b[1]-a[1])[0]?.[0];
+    const topCat = topCatId ? getCat(topCatId) : null;
+    const ringColor = topCat ? topCat.color : '#2a2a2a';
+    const pct = Math.min(dayTotal / dailyBudget, 1);
+    const hasData = dayExps.length > 0;
+
+    const cell = document.createElement('div');
+    cell.className = 'cal-cell' + (isToday?' today':'') + (isFuture?' future':'') + (isSelected?' selected':'');
+    cell.onclick = () => selectCalDay(dateStr, day);
+
+    const circumference = 2 * Math.PI * 18;
+    const trackColor = hasData ? ringColor + '30' : '#1e1e1e';
+    const fillOffset = circumference - (hasData ? pct * circumference : 0);
+    const strokeColor = hasData ? ringColor : '#2a2a2a';
+    const strokeW = hasData ? 4 : 3;
+
+    // green dot for days with expenses logged
+    const dot = hasData ? `<div style="width:4px;height:4px;border-radius:50%;background:${ringColor};margin-bottom:1px;"></div>` : '<div style="width:4px;height:4px;"></div>';
+
+    cell.innerHTML = `
+      <div class="cal-cell-date" style="${isToday?'background:#fff;color:#000;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;':''}">${day}</div>
+      <div class="cal-donut-wrap">
+        <svg width="44" height="44" viewBox="0 0 44 44">
+          <circle cx="22" cy="22" r="18" fill="none" stroke="${trackColor}" stroke-width="${strokeW}"/>
+          <circle cx="22" cy="22" r="18" fill="none" stroke="${strokeColor}" stroke-width="${strokeW}"
+            stroke-dasharray="${circumference.toFixed(2)}" stroke-dashoffset="${fillOffset.toFixed(2)}"
+            stroke-linecap="round" transform="rotate(-90 22 22)"
+            ${!hasData?'opacity="0.3"':''}/>
+        </svg>
+        <div class="cal-donut-inner" style="color:${strokeColor};">${hasData ? (pct>=1?'!':topCat?.icon||'') : ''}</div>
+      </div>
+      ${dot}`;
+    grid.appendChild(cell);
+  }
+}
+
+function selectCalDay(dateStr, day) {
+  calSelectedDate = dateStr;
+  renderCalGrid();
+
+  const detail = document.getElementById('cal-day-detail');
+  const title = document.getElementById('cal-day-detail-title');
+  const list = document.getElementById('cal-day-detail-list');
+  const totalEl = document.getElementById('cal-day-detail-total');
+
+  const dayExps = state.expenses.filter(e => e.date === dateStr)
+    .sort((a,b) => b.amount - a.amount);
+
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const d = new Date(dateStr + 'T00:00:00');
+  title.textContent = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+
+  if (dayExps.length === 0) {
+    list.innerHTML = '<div style="font-size:13px;color:#555;padding:4px 0;">No expenses recorded</div>';
+    totalEl.textContent = '';
+  } else {
+    list.innerHTML = dayExps.map(e => {
+      const cat = getCat(e.catId);
+      const acct = state.accounts?.find(a=>a.id===e.acctId);
+      return `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:0.5px solid #2a2a2a;">
+        <div style="width:32px;height:32px;border-radius:10px;background:${cat.color}22;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">${cat.icon}</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:13px;font-weight:500;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${e.desc||cat.en}</div>
+          <div style="font-size:11px;color:#555;margin-top:1px;">${cat.en}${acct?' · '+acct.name:''}</div>
+        </div>
+        <div style="font-size:14px;font-weight:600;color:${cat.color};">A$${e.amount.toFixed(2)}</div>
+      </div>`;
+    }).join('');
+    const total = dayExps.reduce((s,e)=>s+e.amount,0);
+    totalEl.textContent = dayExps.length + ' transaction' + (dayExps.length>1?'s':'') + ' · Total A$' + total.toFixed(2);
+  }
+
+  detail.style.display = 'block';
+  setTimeout(() => detail.scrollIntoView({behavior:'smooth', block:'nearest'}), 100);
+}
 
 // ─── ACCOUNTS ─────────────────────────────────────────────────────────────────
 let editingAcctId = null;
