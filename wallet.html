@@ -5,7 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<title>錢包 Wallet</title>
+<title>Expenses</title>
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj4KICA8cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMDAwMDAwIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzMuMywgMzMuMykgc2NhbGUoMS4wKSI+CiAgICA8cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNOTQuNTMsNDUuMTJsLTI4LjYxLTI4LjZjLS41OS0uNTktMS41Ni0uNTktMi4xNSwwbC0yOC42LDI4LjZjLS40NC40My0uNTcsMS4wOS0uMzMsMS42Ni4yMy41Ny43OS45NCwxLjQxLjk0aDE0LjMzYy0uNjIsMjAuODgtMTQuMDQsNDAuNzItMzEuMDUsNDUuNTktLjY4LjItMS4xNC44My0xLjEsMS41NC4wNC43MS41NSwxLjMsMS4yNSwxLjQyLDEuODMuMzMsMy45LjUsNi4xNC41LDkuMjksMCwyMS41Ni0zLDMyLjE1LTEwLjMzLDMuMTMsNi41Nyw5LjgxLDEwLjg4LDE3LjIyLDEwLjg4LDguMzksMCwxNS45MS01LjYxLDE4LjI5LTEzLjY0LjUzLTEuNzUuOC0zLjU4LjgtNS40NSwwLTkuNzUtNy40Mi0xNy44Ny0xNi45MS0xOC45NS45Ni0zLjY4LDEuNS03LjU2LDEuNjEtMTEuNTdoMTQuNWMuNjIsMCwxLjE3LS4zNywxLjQxLS45NC4yMy0uNTcuMTEtMS4yMi0uMzMtMS42NmgwWk05MS4yMSw3OC4yM2MwLDEuNTctLjIyLDMuMTEtLjY3LDQuNTgtMiw2Ljc1LTguMzIsMTEuNDctMTUuMzgsMTEuNDdzLTEyLjg2LTQuMjktMTUuMTItMTAuNjhjLS42MS0xLjcyLS45Mi0zLjUyLS45Mi01LjM2LDAtNS4wNSwyLjQyLTkuODYsNi40OC0xMi44OCwyLjc4LTIuMDcsNi4wOC0zLjE2LDkuNTctMy4xNi4wNiwwLC4xMi4wMS4xOS4wMSw4Ljc0LjA5LDE1Ljg1LDcuMjksMTUuODUsMTYuMDNoMFpNNzcuNDUsNDQuNjdjLS44NCwwLTEuNTIuNjgtMS41MiwxLjUyLDAsNC41NC0uNTgsOC45LTEuNzEsMTIuOTktMy43OS4xOC03LjM4LDEuNDUtMTAuNDMsMy43Mi00LjgzLDMuNTktNy43MSw5LjMyLTcuNzEsMTUuMzIsMCwxLjc5LjI2LDMuNTYuNzUsNS4yNy05Ljg2LDcuMDUtMjEuMzIsMTAuMDYtMzAuMTIsMTAuMjMsMTUuNzItNy45MiwyNi45MS0yNy4xMSwyNi45MS00Ny41MywwLS44NC0uNjgtMS41Mi0xLjUyLTEuNTJoLTEyLjJsMjQuOTMtMjQuOTMsMjQuOTQsMjQuOTNoLTEyLjMzWk03NS4xNyw2Ni40N2MuODQsMCwxLjUyLjY4LDEuNTIsMS41MnYxLjAyYzIuNTcuMjMsNC41OSwyLjM5LDQuNTksNS4wMiwwLC44NC0uNjgsMS41Mi0xLjUyLDEuNTJzLTEuNTItLjY4LTEuNTItMS41MmMwLTEuMS0uODktMi0yLTJoLTIuMTVjLTEuMSwwLTIsLjg5LTIsMnYuMThjMCwuODguNTksMS42NywxLjQ1LDEuOTJsNC4xLDEuMThjMi4xNC42MiwzLjY0LDIuNjEsMy42NCw0Ljg0di4xOGMwLDIuNjMtMi4wMiw0Ljc5LTQuNTksNS4wMnYxLjAyYzAsLjg0LS42OCwxLjUyLTEuNTIsMS41MnMtMS41Mi0uNjgtMS41Mi0xLjUydi0xLjAyYy0yLjU3LS4yMy00LjU5LTIuMzktNC41OS01LjAyLDAtLjg0LjY4LTEuNTIsMS41Mi0xLjUyczEuNTIuNjgsMS41MiwxLjUyYzAsMS4xLjg5LDIsMiwyaDIuMTVjMS4xLDAsMi0uODksMi0ydi0uMThjMC0uODgtLjU5LTEuNjctMS40NS0xLjkybC00LjEtMS4xOGMtMi4xNC0uNjItMy42NC0yLjYxLTMuNjQtNC44NHYtLjE4YzAtMi42MywyLjAyLTQuNzksNC41OS01LjAydi0xLjAyYzAtLjg0LjY4LTEuNTIsMS41Mi0xLjUyWiIvPgogIDwvZz4KPC9zdmc+">
+  <link rel="apple-touch-icon" sizes="152x152" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj4KICA8cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMDAwMDAwIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzMuMywgMzMuMykgc2NhbGUoMS4wKSI+CiAgICA8cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNOTQuNTMsNDUuMTJsLTI4LjYxLTI4LjZjLS41OS0uNTktMS41Ni0uNTktMi4xNSwwbC0yOC42LDI4LjZjLS40NC40My0uNTcsMS4wOS0uMzMsMS42Ni4yMy41Ny43OS45NCwxLjQxLjk0aDE0LjMzYy0uNjIsMjAuODgtMTQuMDQsNDAuNzItMzEuMDUsNDUuNTktLjY4LjItMS4xNC44My0xLjEsMS41NC4wNC43MS41NSwxLjMsMS4yNSwxLjQyLDEuODMuMzMsMy45LjUsNi4xNC41LDkuMjksMCwyMS41Ni0zLDMyLjE1LTEwLjMzLDMuMTMsNi41Nyw5LjgxLDEwLjg4LDE3LjIyLDEwLjg4LDguMzksMCwxNS45MS01LjYxLDE4LjI5LTEzLjY0LjUzLTEuNzUuOC0zLjU4LjgtNS40NSwwLTkuNzUtNy40Mi0xNy44Ny0xNi45MS0xOC45NS45Ni0zLjY4LDEuNS03LjU2LDEuNjEtMTEuNTdoMTQuNWMuNjIsMCwxLjE3LS4zNywxLjQxLS45NC4yMy0uNTcuMTEtMS4yMi0uMzMtMS42NmgwWk05MS4yMSw3OC4yM2MwLDEuNTctLjIyLDMuMTEtLjY3LDQuNTgtMiw2Ljc1LTguMzIsMTEuNDctMTUuMzgsMTEuNDdzLTEyLjg2LTQuMjktMTUuMTItMTAuNjhjLS42MS0xLjcyLS45Mi0zLjUyLS45Mi01LjM2LDAtNS4wNSwyLjQyLTkuODYsNi40OC0xMi44OCwyLjc4LTIuMDcsNi4wOC0zLjE2LDkuNTctMy4xNi4wNiwwLC4xMi4wMS4xOS4wMSw4Ljc0LjA5LDE1Ljg1LDcuMjksMTUuODUsMTYuMDNoMFpNNzcuNDUsNDQuNjdjLS44NCwwLTEuNTIuNjgtMS41MiwxLjUyLDAsNC41NC0uNTgsOC45LTEuNzEsMTIuOTktMy43OS4xOC03LjM4LDEuNDUtMTAuNDMsMy43Mi00LjgzLDMuNTktNy43MSw5LjMyLTcuNzEsMTUuMzIsMCwxLjc5LjI2LDMuNTYuNzUsNS4yNy05Ljg2LDcuMDUtMjEuMzIsMTAuMDYtMzAuMTIsMTAuMjMsMTUuNzItNy45MiwyNi45MS0yNy4xMSwyNi45MS00Ny41MywwLS44NC0uNjgtMS41Mi0xLjUyLTEuNTJoLTEyLjJsMjQuOTMtMjQuOTMsMjQuOTQsMjQuOTNoLTEyLjMzWk03NS4xNyw2Ni40N2MuODQsMCwxLjUyLjY4LDEuNTIsMS41MnYxLjAyYzIuNTcuMjMsNC41OSwyLjM5LDQuNTksNS4wMiwwLC44NC0uNjgsMS41Mi0xLjUyLDEuNTJzLTEuNTItLjY4LTEuNTItMS41MmMwLTEuMS0uODktMi0yLTJoLTIuMTVjLTEuMSwwLTIsLjg5LTIsMnYuMThjMCwuODguNTksMS42NywxLjQ1LDEuOTJsNC4xLDEuMThjMi4xNC42MiwzLjY0LDIuNjEsMy42NCw0Ljg0di4xOGMwLDIuNjMtMi4wMiw0Ljc5LTQuNTksNS4wMnYxLjAyYzAsLjg0LS42OCwxLjUyLTEuNTIsMS41MnMtMS41Mi0uNjgtMS41Mi0xLjUydi0xLjAyYy0yLjU3LS4yMy00LjU5LTIuMzktNC41OS01LjAyLDAtLjg0LjY4LTEuNTIsMS41Mi0xLjUyczEuNTIuNjgsMS41MiwxLjUyYzAsMS4xLjg5LDIsMiwyaDIuMTVjMS4xLDAsMi0uODksMi0ydi0uMThjMC0uODgtLjU5LTEuNjctMS40NS0xLjkybC00LjEtMS4xOGMtMi4xNC0uNjItMy42NC0yLjYxLTMuNjQtNC44NHYtLjE4YzAtMi42MywyLjAyLTQuNzksNC41OS01LjAydi0xLjAyYzAtLjg0LjY4LTEuNTIsMS41Mi0xLjUyWiIvPgogIDwvZz4KPC9zdmc+">
+  <link rel="apple-touch-icon" sizes="167x167" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj4KICA8cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMDAwMDAwIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzMuMywgMzMuMykgc2NhbGUoMS4wKSI+CiAgICA8cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNOTQuNTMsNDUuMTJsLTI4LjYxLTI4LjZjLS41OS0uNTktMS41Ni0uNTktMi4xNSwwbC0yOC42LDI4LjZjLS40NC40My0uNTcsMS4wOS0uMzMsMS42Ni4yMy41Ny43OS45NCwxLjQxLjk0aDE0LjMzYy0uNjIsMjAuODgtMTQuMDQsNDAuNzItMzEuMDUsNDUuNTktLjY4LjItMS4xNC44My0xLjEsMS41NC4wNC43MS41NSwxLjMsMS4yNSwxLjQyLDEuODMuMzMsMy45LjUsNi4xNC41LDkuMjksMCwyMS41Ni0zLDMyLjE1LTEwLjMzLDMuMTMsNi41Nyw5LjgxLDEwLjg4LDE3LjIyLDEwLjg4LDguMzksMCwxNS45MS01LjYxLDE4LjI5LTEzLjY0LjUzLTEuNzUuOC0zLjU4LjgtNS40NSwwLTkuNzUtNy40Mi0xNy44Ny0xNi45MS0xOC45NS45Ni0zLjY4LDEuNS03LjU2LDEuNjEtMTEuNTdoMTQuNWMuNjIsMCwxLjE3LS4zNywxLjQxLS45NC4yMy0uNTcuMTEtMS4yMi0uMzMtMS42NmgwWk05MS4yMSw3OC4yM2MwLDEuNTctLjIyLDMuMTEtLjY3LDQuNTgtMiw2Ljc1LTguMzIsMTEuNDctMTUuMzgsMTEuNDdzLTEyLjg2LTQuMjktMTUuMTItMTAuNjhjLS42MS0xLjcyLS45Mi0zLjUyLS45Mi01LjM2LDAtNS4wNSwyLjQyLTkuODYsNi40OC0xMi44OCwyLjc4LTIuMDcsNi4wOC0zLjE2LDkuNTctMy4xNi4wNiwwLC4xMi4wMS4xOS4wMSw4Ljc0LjA5LDE1Ljg1LDcuMjksMTUuODUsMTYuMDNoMFpNNzcuNDUsNDQuNjdjLS44NCwwLTEuNTIuNjgtMS41MiwxLjUyLDAsNC41NC0uNTgsOC45LTEuNzEsMTIuOTktMy43OS4xOC03LjM4LDEuNDUtMTAuNDMsMy43Mi00LjgzLDMuNTktNy43MSw5LjMyLTcuNzEsMTUuMzIsMCwxLjc5LjI2LDMuNTYuNzUsNS4yNy05Ljg2LDcuMDUtMjEuMzIsMTAuMDYtMzAuMTIsMTAuMjMsMTUuNzItNy45MiwyNi45MS0yNy4xMSwyNi45MS00Ny41MywwLS44NC0uNjgtMS41Mi0xLjUyLTEuNTJoLTEyLjJsMjQuOTMtMjQuOTMsMjQuOTQsMjQuOTNoLTEyLjMzWk03NS4xNyw2Ni40N2MuODQsMCwxLjUyLjY4LDEuNTIsMS41MnYxLjAyYzIuNTcuMjMsNC41OSwyLjM5LDQuNTksNS4wMiwwLC44NC0uNjgsMS41Mi0xLjUyLDEuNTJzLTEuNTItLjY4LTEuNTItMS41MmMwLTEuMS0uODktMi0yLTJoLTIuMTVjLTEuMSwwLTIsLjg5LTIsMnYuMThjMCwuODguNTksMS42NywxLjQ1LDEuOTJsNC4xLDEuMThjMi4xNC42MiwzLjY0LDIuNjEsMy42NCw0Ljg0di4xOGMwLDIuNjMtMi4wMiw0Ljc5LTQuNTksNS4wMnYxLjAyYzAsLjg0LS42OCwxLjUyLTEuNTIsMS41MnMtMS41Mi0uNjgtMS41Mi0xLjUydi0xLjAyYy0yLjU3LS4yMy00LjU5LTIuMzktNC41OS01LjAyLDAtLjg0LjY4LTEuNTIsMS41Mi0xLjUyczEuNTIuNjgsMS41MiwxLjUyYzAsMS4xLjg5LDIsMiwyaDIuMTVjMS4xLDAsMi0uODksMi0ydi0uMThjMC0uODgtLjU5LTEuNjctMS40NS0xLjkybC00LjEtMS4xOGMtMi4xNC0uNjItMy42NC0yLjYxLTMuNjQtNC44NHYtLjE4YzAtMi42MywyLjAyLTQuNzksNC41OS01LjAydi0xLjAyYzAtLjg0LjY4LTEuNTIsMS41Mi0xLjUyWiIvPgogIDwvZz4KPC9zdmc+">
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj4KICA8cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMDAwMDAwIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzMuMywgMzMuMykgc2NhbGUoMS4wKSI+CiAgICA8cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNOTQuNTMsNDUuMTJsLTI4LjYxLTI4LjZjLS41OS0uNTktMS41Ni0uNTktMi4xNSwwbC0yOC42LDI4LjZjLS40NC40My0uNTcsMS4wOS0uMzMsMS42Ni4yMy41Ny43OS45NCwxLjQxLjk0aDE0LjMzYy0uNjIsMjAuODgtMTQuMDQsNDAuNzItMzEuMDUsNDUuNTktLjY4LjItMS4xNC44My0xLjEsMS41NC4wNC43MS41NSwxLjMsMS4yNSwxLjQyLDEuODMuMzMsMy45LjUsNi4xNC41LDkuMjksMCwyMS41Ni0zLDMyLjE1LTEwLjMzLDMuMTMsNi41Nyw5LjgxLDEwLjg4LDE3LjIyLDEwLjg4LDguMzksMCwxNS45MS01LjYxLDE4LjI5LTEzLjY0LjUzLTEuNzUuOC0zLjU4LjgtNS40NSwwLTkuNzUtNy40Mi0xNy44Ny0xNi45MS0xOC45NS45Ni0zLjY4LDEuNS03LjU2LDEuNjEtMTEuNTdoMTQuNWMuNjIsMCwxLjE3LS4zNywxLjQxLS45NC4yMy0uNTcuMTEtMS4yMi0uMzMtMS42NmgwWk05MS4yMSw3OC4yM2MwLDEuNTctLjIyLDMuMTEtLjY3LDQuNTgtMiw2Ljc1LTguMzIsMTEuNDctMTUuMzgsMTEuNDdzLTEyLjg2LTQuMjktMTUuMTItMTAuNjhjLS42MS0xLjcyLS45Mi0zLjUyLS45Mi01LjM2LDAtNS4wNSwyLjQyLTkuODYsNi40OC0xMi44OCwyLjc4LTIuMDcsNi4wOC0zLjE2LDkuNTctMy4xNi4wNiwwLC4xMi4wMS4xOS4wMSw4Ljc0LjA5LDE1Ljg1LDcuMjksMTUuODUsMTYuMDNoMFpNNzcuNDUsNDQuNjdjLS44NCwwLTEuNTIuNjgtMS41MiwxLjUyLDAsNC41NC0uNTgsOC45LTEuNzEsMTIuOTktMy43OS4xOC03LjM4LDEuNDUtMTAuNDMsMy43Mi00LjgzLDMuNTktNy43MSw5LjMyLTcuNzEsMTUuMzIsMCwxLjc5LjI2LDMuNTYuNzUsNS4yNy05Ljg2LDcuMDUtMjEuMzIsMTAuMDYtMzAuMTIsMTAuMjMsMTUuNzItNy45MiwyNi45MS0yNy4xMSwyNi45MS00Ny41MywwLS44NC0uNjgtMS41Mi0xLjUyLTEuNTJoLTEyLjJsMjQuOTMtMjQuOTMsMjQuOTQsMjQuOTNoLTEyLjMzWk03NS4xNyw2Ni40N2MuODQsMCwxLjUyLjY4LDEuNTIsMS41MnYxLjAyYzIuNTcuMjMsNC41OSwyLjM5LDQuNTksNS4wMiwwLC44NC0uNjgsMS41Mi0xLjUyLDEuNTJzLTEuNTItLjY4LTEuNTItMS41MmMwLTEuMS0uODktMi0yLTJoLTIuMTVjLTEuMSwwLTIsLjg5LTIsMnYuMThjMCwuODguNTksMS42NywxLjQ1LDEuOTJsNC4xLDEuMThjMi4xNC42MiwzLjY0LDIuNjEsMy42NCw0Ljg0di4xOGMwLDIuNjMtMi4wMiw0Ljc5LTQuNTksNS4wMnYxLjAyYzAsLjg0LS42OCwxLjUyLTEuNTIsMS41MnMtMS41Mi0uNjgtMS41Mi0xLjUydi0xLjAyYy0yLjU3LS4yMy00LjU5LTIuMzktNC41OS01LjAyLDAtLjg0LjY4LTEuNTIsMS41Mi0xLjUyczEuNTIuNjgsMS41MiwxLjUyYzAsMS4xLjg5LDIsMiwyaDIuMTVjMS4xLDAsMi0uODksMi0ydi0uMThjMC0uODgtLjU5LTEuNjctMS40NS0xLjkybC00LjEtMS4xOGMtMi4xNC0uNjItMy42NC0yLjYxLTMuNjQtNC44NHYtLjE4YzAtMi42MywyLjAyLTQuNzksNC41OS01LjAydi0xLjAyYzAtLjg0LjY4LTEuNTIsMS41Mi0xLjUyWiIvPgogIDwvZz4KPC9zdmc+">
+  <meta name="apple-mobile-web-app-title" content="Expenses">
+  <meta name="theme-color" content="#000000">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 :root{
@@ -819,6 +825,7 @@ let state = {
 };
 
 let editingCatId = null;
+let selectedHomeDate = null; // null = show all recent
 let editingTxId = null;
 let selectedCatAdd = null;
 let selectedColor = PRESET_COLORS[3];
@@ -870,7 +877,7 @@ function showScreen(name) {
   if (screenEl) screenEl.classList.add('active');
   const navEl = document.getElementById('nav-' + name);
   if (navEl) navEl.classList.add('active');
-  if (name === 'home') renderHome();
+  if (name === 'home') { selectedHomeDate = null; renderHome(); }
   if (name === 'progress') renderProgress();
   if (name === 'settings') renderSettings();
   if (name === 'accounts') renderAccounts();
@@ -883,7 +890,10 @@ function closeAdd() { showScreen('home'); }
 function getCat(id) { return state.categories.find(c => c.id === id) || state.categories[state.categories.length-1]; }
 function fmt(n) { return 'A$' + Number(n).toFixed(2); }
 function fmtShort(n) { return '$' + Math.round(n); }
-function today() { return new Date().toISOString().slice(0,10); }
+function today() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
 function monthExpenses() {
   const now = new Date();
   const m = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
@@ -936,8 +946,14 @@ function renderCalendar() {
     // clicking a past/today date pre-fills the add form with that date
     div.onclick = () => {
       if (!isFuture) {
-        showScreen('add');
-        setTimeout(() => { document.getElementById('add-date').value = dateStr; }, 50);
+        // If tapping today and already selected, deselect
+        if (selectedHomeDate === dateStr) {
+          selectedHomeDate = null;
+        } else {
+          selectedHomeDate = dateStr;
+        }
+        renderCalendar();
+        renderRecentList();
       }
     };
     div.style.cursor = isFuture ? 'default' : 'pointer';
@@ -1026,7 +1042,63 @@ function renderHome() {
 
 function yesterday() {
   const d = new Date(); d.setDate(d.getDate()-1);
-  return d.toISOString().slice(0,10);
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function renderRecentList() {
+  const list = document.getElementById('tx-list');
+  if (!list) return;
+
+  // If a date is selected in the strip, show only that day
+  // Otherwise show most recent 20 across all dates
+  let sorted;
+  let headLabel = '最近記錄 Recent';
+  if (selectedHomeDate) {
+    sorted = state.expenses.filter(e => e.date === selectedHomeDate)
+      .sort((a,b) => b.id - a.id);
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const d = new Date(selectedHomeDate + 'T00:00:00');
+    const label = selectedHomeDate === today() ? 'Today' : selectedHomeDate === yesterday() ? 'Yesterday' : d.getDate() + ' ' + months[d.getMonth()];
+    headLabel = label + ' · ' + sorted.length + ' expense' + (sorted.length !== 1 ? 's' : '');
+  } else {
+    sorted = [...state.expenses].sort((a,b) => b.date.localeCompare(a.date) || b.id - a.id).slice(0,20);
+  }
+
+  // Update section heading
+  const head = document.querySelector('.section-head');
+  if (head) head.textContent = headLabel;
+
+  if (sorted.length === 0) {
+    list.innerHTML = '<div class="empty-state"><div class="e-icon">💸</div><p>' +
+      (selectedHomeDate && selectedHomeDate !== today() ? 'No expenses on this day' : '尚無記錄<br>No expenses yet') +
+      '<br><span style="font-size:13px;color:#555;">Tap + to add one</span></p></div>';
+    return;
+  }
+  list.innerHTML = '';
+  sorted.forEach(function(exp) {
+    const cat = getCat(exp.catId);
+    const card = document.createElement('div');
+    card.className = 'tx-card';
+    card.onclick = function(){ openTxDetail(exp.id); };
+    const dateLabel = exp.date === today() ? '今天 Today' : exp.date === yesterday() ? '昨天 Yesterday' : exp.date;
+    const thumb = document.createElement('div');
+    thumb.className = 'tx-thumb';
+    thumb.style.background = cat.color + '22';
+    if (exp.receiptThumb) {
+      const img = document.createElement('img');
+      img.src = exp.receiptThumb; img.alt = '';
+      thumb.appendChild(img);
+    } else { thumb.textContent = cat.icon; }
+    const body = document.createElement('div');
+    body.className = 'tx-body';
+    body.innerHTML = '<div class="tx-name">' + (exp.desc || cat.zh + ' ' + cat.en) + '</div>' +
+      '<div class="tx-time">' + dateLabel + (exp.time ? ' · ' + exp.time : '') + '</div>' +
+      '<div class="tx-amt-row"><span style="font-size:14px;">💰</span><span class="tx-amt">' + fmt(exp.amount) + '</span></div>' +
+      '<span class="tx-cat-pill"><span class="tx-cat-dot" style="background:' + cat.color + ';"></span>' + cat.zh + ' ' + cat.en + '</span>';
+    card.appendChild(thumb);
+    card.appendChild(body);
+    list.appendChild(card);
+  });
 }
 
 function renderSlides(exps) {
@@ -1912,7 +1984,7 @@ function renderCalGrid() {
 
   for (let day = 1; day <= daysInMonth; day++) {
     const d = new Date(calYear, calMonth, day);
-    const dateStr = d.toISOString().slice(0, 10);
+    const dateStr = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
     const isToday = (d.getFullYear()===now.getFullYear() && d.getMonth()===now.getMonth() && d.getDate()===now.getDate());
     const isFuture = d > now;
     const isSelected = calSelectedDate === dateStr;
