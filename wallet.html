@@ -2,11 +2,14 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
+<meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate,max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <title>Expenses</title>
+<meta name="version" content="1780402464">
 <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMDAwIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzAsMjUpIHNjYWxlKDEuMykiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik03MCwxMCBMNDIsMzggTDU1LDM4IEM1NCw1OCA0MCw3NCAyMiw3OCBDMzUsNzIgNDYsNTIgNDYsMzggTDMzLDM4IEw2MSwxMCBaIE03MCw0MCBDNzksNDEgODYsNDkgODYsNTggQzg2LDY4IDc4LDc2IDY4LDc2IEM1OCw3NiA1MCw2OCA1MCw1OCBDNTAsNDggNTgsNDAgNjgsNDAgWiBNNjUsNTAgTDY1LDUyIEM2Miw1MyA2MCw1NSA2MCw1OCBMNjAsNTggQzYwLDYxIDYyLDYzIDY1LDY0IEw2OCw2NSBDNjksNjUgNzAsNjYgNzAsNjcgQzcwLDY4IDY5LDY5IDY4LDY5IEw2NSw2OSBDNjQsNjkgNjMsNjggNjMsNjcgTDU4LDY3IEM1OCw3MCA2MCw3MiA2Myw3MyBMNjMsNzUgTDY3LDc1IEw2Nyw3MyBDNzAsNzIgNzIsNzAgNzIsNjcgQzcyLDY0IDcwLDYyIDY3LDYxIEw2NCw2MCBDNjMsNjAgNjIsNTkgNjIsNTggQzYyLDU3IDYzLDU2IDY0LDU2IEw2Nyw1NiBDNjgsNTYgNjksNTcgNjksNTggTDc0LDU4IEM3NCw1NSA3Miw1MyA2OSw1MiBMNjksNTAgWiIvPjwvZz48L3N2Zz4=">
 <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMDAwIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzAsMjUpIHNjYWxlKDEuMykiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik03MCwxMCBMNDIsMzggTDU1LDM4IEM1NCw1OCA0MCw3NCAyMiw3OCBDMzUsNzIgNDYsNTIgNDYsMzggTDMzLDM4IEw2MSwxMCBaIE03MCw0MCBDNzksNDEgODYsNDkgODYsNTggQzg2LDY4IDc4LDc2IDY4LDc2IEM1OCw3NiA1MCw2OCA1MCw1OCBDNTAsNDggNTgsNDAgNjgsNDAgWiBNNjUsNTAgTDY1LDUyIEM2Miw1MyA2MCw1NSA2MCw1OCBMNjAsNTggQzYwLDYxIDYyLDYzIDY1LDY0IEw2OCw2NSBDNjksNjUgNzAsNjYgNzAsNjcgQzcwLDY4IDY5LDY5IDY4LDY5IEw2NSw2OSBDNjQsNjkgNjMsNjggNjMsNjcgTDU4LDY3IEM1OCw3MCA2MCw3MiA2Myw3MyBMNjMsNzUgTDY3LDc1IEw2Nyw3MyBDNzAsNzIgNzIsNzAgNzIsNjcgQzcyLDY0IDcwLDYyIDY3LDYxIEw2NCw2MCBDNjMsNjAgNjIsNTkgNjIsNTggQzYyLDU3IDYzLDU2IDY0LDU2IEw2Nyw1NiBDNjgsNTYgNjksNTcgNjksNTggTDc0LDU4IEM3NCw1NSA3Miw1MyA2OSw1MiBMNjksNTAgWiIvPjwvZz48L3N2Zz4=">
 <meta name="apple-mobile-web-app-title" content="Expenses">
@@ -222,14 +225,14 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
     <div class="modal-title">Add Expense</div>
     <div style="width:34px;"></div>
   </div>
-  <div class="scroll-body" style="padding-bottom:max(90px,calc(env(safe-area-inset-bottom)+70px));">
+  <div class="scroll-body" style="padding-bottom:max(140px,calc(env(safe-area-inset-bottom)+120px));">
     <button class="scan-row" onclick="startScan()">
       <div class="scan-ic"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
       <div><div style="font-size:15px;font-weight:500;color:#fff;">Scan Receipt</div><div style="font-size:12px;color:#8e8e93;margin-top:2px;">AI auto-fills in seconds</div></div>
       <div style="margin-left:auto;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#48484a" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></div>
     </button>
     <input type="file" id="receipt-file" accept="image/*" capture="environment" style="display:none" onchange="handleReceipt(this)">
-    <div class="form-sec"><div class="form-lbl">Amount (AUD)</div><div style="position:relative;"><span class="amt-prefix">A$</span><input class="form-input big" id="add-amount" type="number" inputmode="decimal" placeholder="0.00" step="0.01" min="0"></div></div>
+    <div class="form-sec"><div class="form-lbl">Amount (AUD)</div><div style="position:relative;"><span class="amt-prefix">A$</span><input class="form-input big" id="add-amount" type="number" inputmode="decimal" placeholder="" step="0.01" min="0"></div></div>
     <div class="form-sec"><div class="form-lbl">Description</div><input class="form-input" id="add-desc" type="text" placeholder="e.g. Coffee at Supersede"></div>
     <div class="form-sec"><div class="form-lbl">Category</div><div class="cats-chips" id="add-cat-chips"></div></div>
     <div class="form-sec"><div class="form-lbl">Account</div><select class="form-input" id="add-acct" style="color:#fff;background:#1c1c1e;"></select></div>
@@ -419,7 +422,7 @@ input[type=number] { -moz-appearance:textfield; appearance:textfield; }
 
 <div class="toast" id="toast"></div>
 
-<script>
+<script>// v2
 var COLORS = ['#ff453a','#ff9f0a','#ffd60a','#30d158','#0a84ff','#5e5ce6','#bf5af2','#ff375f','#ff6b6b','#1ec8e7','#3ecf8e','#ff2d55','#ac8e68','#ff9500','#34c759'];
 var EXP_DATA = [{"id": 1000, "amount": 175.0, "desc": "Plumbing Call Out Fee", "date": "2026-03-18", "catId": "home", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1001, "amount": 110.0, "desc": "Plumbing Booking Fee", "date": "2026-03-16", "catId": "home", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1002, "amount": 31.46, "desc": "Shein - Gym Clothes", "date": "2026-03-20", "catId": "shopping", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1003, "amount": 47.0, "desc": "Spotlight - Leather Equipment", "date": "2026-03-31", "catId": "shopping", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1004, "amount": 51.0, "desc": "Aesop - Scent", "date": "2026-04-01", "catId": "shopping", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1005, "amount": 4.15, "desc": "Muji - Hand Soap", "date": "2026-04-01", "catId": "shopping", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1006, "amount": 19.95, "desc": "JD Sport - Hat", "date": "2026-04-01", "catId": "shopping", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1007, "amount": 45.0, "desc": "JD Sport - Shorts", "date": "2026-04-03", "catId": "shopping", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1008, "amount": 19.54, "desc": "Temu - House Items", "date": "2026-04-07", "catId": "shopping", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1009, "amount": 12.17, "desc": "Temu - House Items", "date": "2026-04-07", "catId": "shopping", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1010, "amount": 15.32, "desc": "Temu - House Items", "date": "2026-04-07", "catId": "shopping", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1011, "amount": 41.5, "desc": "Kmart", "date": "2026-04-10", "catId": "shopping", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1012, "amount": 43.5, "desc": "Tallow - Skin Care", "date": "2026-04-16", "catId": "shopping", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1013, "amount": 28.84, "desc": "Amazon - House Items", "date": "2026-03-20", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1014, "amount": 65.51, "desc": "Amazon - House Items", "date": "2026-03-20", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1015, "amount": 313.78, "desc": "Leffler - Leather Tools", "date": "2026-03-23", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1016, "amount": 9.84, "desc": "Amazon - House Items", "date": "2026-03-23", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1017, "amount": 246.44, "desc": "IKEA - House Items", "date": "2026-03-23", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1018, "amount": 189.95, "desc": "Feurage - House Item", "date": "2026-03-25", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1019, "amount": 6.65, "desc": "International Trans Fee", "date": "2026-03-25", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1020, "amount": 77.0, "desc": "Amazon - House Items", "date": "2026-03-26", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1021, "amount": 39.99, "desc": "Milligram - Birthday Cards", "date": "2026-03-30", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1022, "amount": 89.79, "desc": "Bunnings - House Items", "date": "2026-04-04", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1023, "amount": 14.5, "desc": "Kmart - House Items", "date": "2026-04-04", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1024, "amount": 150.99, "desc": "IKEA - House Items", "date": "2026-04-04", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1025, "amount": 90.0, "desc": "Aesop - Skin Care", "date": "2026-04-12", "catId": "shopping", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1026, "amount": 30.55, "desc": "Mr Dad", "date": "2026-03-24", "catId": "food", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1027, "amount": 6.62, "desc": "Mr Dad", "date": "2026-04-01", "catId": "food", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1028, "amount": 9.68, "desc": "Mr Dad", "date": "2026-04-02", "catId": "food", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1029, "amount": 43.94, "desc": "Mr Dad", "date": "2026-04-07", "catId": "food", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1030, "amount": 74.26, "desc": "Woolworths", "date": "2026-04-08", "catId": "food", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1031, "amount": 17.99, "desc": "Chemist Warehouse", "date": "2026-04-08", "catId": "food", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1032, "amount": 44.22, "desc": "Coles", "date": "2026-04-08", "catId": "food", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1033, "amount": 68.0, "desc": "KT Mart", "date": "2026-04-16", "catId": "food", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1034, "amount": 13.99, "desc": "KT Mart", "date": "2026-04-16", "catId": "food", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1035, "amount": 44.49, "desc": "Chemist Warehouse", "date": "2026-04-16", "catId": "food", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1036, "amount": 28.51, "desc": "Mr Dad", "date": "2026-04-18", "catId": "food", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1037, "amount": 49.95, "desc": "Mr Dad", "date": "2026-04-19", "catId": "food", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1038, "amount": 9.16, "desc": "Mr Dad", "date": "2026-03-25", "catId": "food", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1039, "amount": 10.69, "desc": "Mr Dad", "date": "2026-03-26", "catId": "food", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1040, "amount": 25.47, "desc": "Mr Dad", "date": "2026-03-27", "catId": "food", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1041, "amount": 4.07, "desc": "Mr Dad", "date": "2026-03-28", "catId": "food", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1042, "amount": 10.91, "desc": "Mr Dad", "date": "2026-03-31", "catId": "food", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1043, "amount": 24.96, "desc": "Mr Dad", "date": "2026-04-05", "catId": "food", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1044, "amount": 5.09, "desc": "Mr Dad", "date": "2026-04-06", "catId": "food", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1045, "amount": 14.76, "desc": "Mr Dad", "date": "2026-04-10", "catId": "food", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1046, "amount": 12.95, "desc": "Castor Oil", "date": "2026-04-12", "catId": "food", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1047, "amount": 50.72, "desc": "Mr Dad", "date": "2026-04-13", "catId": "food", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1048, "amount": 29.0, "desc": "Mr Dad", "date": "2026-04-18", "catId": "food", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1049, "amount": 50.44, "desc": "Mr Dad", "date": "2026-03-27", "catId": "food", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1050, "amount": 88.0, "desc": "Woolworths", "date": "2026-03-30", "catId": "food", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1051, "amount": 107.1, "desc": "L Kiosk", "date": "2026-03-31", "catId": "food", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1052, "amount": 56.73, "desc": "Woolworths", "date": "2026-04-12", "catId": "food", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1053, "amount": 10.66, "desc": "Boost Juice", "date": "2026-04-01", "catId": "dining", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1054, "amount": 34.0, "desc": "Maccas", "date": "2026-04-04", "catId": "dining", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1055, "amount": 4.5, "desc": "Yarrabend Coffee", "date": "2026-04-08", "catId": "dining", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1056, "amount": 4.5, "desc": "Yarrabend Coffee", "date": "2026-04-08", "catId": "dining", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1057, "amount": 37.8, "desc": "Soul Soul Coffee", "date": "2026-04-11", "catId": "dining", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1058, "amount": 0.51, "desc": "Taiwan Village", "date": "2026-03-19", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1059, "amount": 5.89, "desc": "Boogie House Hotpot", "date": "2026-03-23", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1060, "amount": 4.5, "desc": "Coffee", "date": "2026-03-25", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1061, "amount": 4.95, "desc": "Coffee", "date": "2026-03-26", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1062, "amount": 6.5, "desc": "Coffee", "date": "2026-03-27", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1063, "amount": 4.95, "desc": "Coffee", "date": "2026-03-30", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1064, "amount": 9.36, "desc": "Coffee", "date": "2026-03-31", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1065, "amount": 6.5, "desc": "Coffee", "date": "2026-04-02", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1066, "amount": 11.0, "desc": "Coffee", "date": "2026-04-05", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1067, "amount": 4.5, "desc": "Coffee", "date": "2026-04-07", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1068, "amount": 5.0, "desc": "IKEA Coffee", "date": "2026-04-08", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1069, "amount": 26.95, "desc": "Takeaway", "date": "2026-04-11", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1070, "amount": 8.35, "desc": "Coffee", "date": "2026-04-12", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1071, "amount": 9.09, "desc": "Sushi", "date": "2026-04-12", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1072, "amount": 5.4, "desc": "Coffee", "date": "2026-04-13", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1073, "amount": 4.5, "desc": "Coffee", "date": "2026-04-16", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1074, "amount": 30.0, "desc": "Sevenseeds Coffee", "date": "2026-04-17", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1075, "amount": 10.66, "desc": "Banh Mi", "date": "2026-04-18", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1076, "amount": 10.4, "desc": "Coffee", "date": "2026-03-24", "catId": "dining", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1077, "amount": 41.23, "desc": "Easi Delivery", "date": "2026-03-16", "catId": "dining", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1078, "amount": 30.45, "desc": "Koi Dessert", "date": "2026-03-17", "catId": "dining", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1079, "amount": 496.29, "desc": "Matilda Dinner", "date": "2026-03-17", "catId": "dining", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1080, "amount": 3.3, "desc": "Linkt Toll", "date": "2026-04-01", "catId": "transport", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1081, "amount": 14.91, "desc": "Uber", "date": "2026-03-16", "catId": "transport", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1082, "amount": 28.81, "desc": "Uber", "date": "2026-03-17", "catId": "transport", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1083, "amount": 1.02, "desc": "Parking", "date": "2026-03-18", "catId": "transport", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1084, "amount": 15.0, "desc": "Paystay", "date": "2026-03-28", "catId": "transport", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1085, "amount": 19.91, "desc": "Uber", "date": "2026-04-07", "catId": "transport", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1086, "amount": 19.35, "desc": "Uber", "date": "2026-03-17", "catId": "transport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1087, "amount": 1.54, "desc": "Easypark", "date": "2026-03-18", "catId": "transport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1088, "amount": 9.8, "desc": "Easypark", "date": "2026-03-23", "catId": "transport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1089, "amount": 2.28, "desc": "Easypark", "date": "2026-03-24", "catId": "transport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1090, "amount": 14.78, "desc": "Easypark", "date": "2026-03-26", "catId": "transport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1091, "amount": 1.9, "desc": "Easypark", "date": "2026-03-27", "catId": "transport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1092, "amount": 4.23, "desc": "Easypark", "date": "2026-03-28", "catId": "transport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1093, "amount": 100.05, "desc": "Car Fuel", "date": "2026-03-29", "catId": "transport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1094, "amount": 98.5, "desc": "Car Fuel", "date": "2026-04-16", "catId": "transport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1095, "amount": 1.76, "desc": "Easypark", "date": "2026-04-17", "catId": "transport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1096, "amount": 14.99, "desc": "Apple", "date": "2026-04-07", "catId": "subs", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1097, "amount": 29.99, "desc": "Apple - Cal AI", "date": "2026-03-18", "catId": "subs", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1098, "amount": 49.99, "desc": "Apple - Cal AI", "date": "2026-03-22", "catId": "subs", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1099, "amount": 13.0, "desc": "ChatGPT", "date": "2026-04-01", "catId": "subs", "acctId": "acct2", "notes": "", "time": ""}, {"id": 1100, "amount": 20.99, "desc": "Netflix", "date": "2026-03-16", "catId": "subs", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1101, "amount": 15.99, "desc": "Spotify", "date": "2026-03-17", "catId": "subs", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1102, "amount": 23.95, "desc": "Anytime Fitness", "date": "2026-03-20", "catId": "subs", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1103, "amount": 23.95, "desc": "Anytime Fitness", "date": "2026-03-27", "catId": "subs", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1104, "amount": 93.75, "desc": "Adobe", "date": "2026-03-31", "catId": "subs", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1105, "amount": 79.99, "desc": "Adobe", "date": "2026-04-03", "catId": "subs", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1106, "amount": 15.01, "desc": "MidJourney AI", "date": "2026-04-08", "catId": "subs", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1107, "amount": 56.73, "desc": "Adobe", "date": "2026-04-11", "catId": "subs", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1108, "amount": 20.99, "desc": "Netflix", "date": "2026-04-16", "catId": "subs", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1109, "amount": 2021.4, "desc": "Fo Guang Shan", "date": "2026-03-17", "catId": "donation", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1110, "amount": 61.49, "desc": "Paypal Balance", "date": "2026-03-18", "catId": "bills", "acctId": "acct1", "notes": "", "time": ""}, {"id": 1111, "amount": 150.0, "desc": "Optus", "date": "2026-03-17", "catId": "bills", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1112, "amount": 79.0, "desc": "Origin Internet", "date": "2026-04-07", "catId": "bills", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1113, "amount": 45.51, "desc": "Optus", "date": "2026-04-13", "catId": "bills", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1114, "amount": 70.69, "desc": "Origin Internet", "date": "2026-04-16", "catId": "bills", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1115, "amount": 177.0, "desc": "Yarrabend Golf", "date": "2026-03-18", "catId": "sport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1116, "amount": 118.0, "desc": "Yarrabend Golf", "date": "2026-03-18", "catId": "sport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1117, "amount": 88.22, "desc": "Anytime Fitness Setup", "date": "2026-03-18", "catId": "sport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1118, "amount": 38.0, "desc": "Yarrabend Golf", "date": "2026-03-18", "catId": "sport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1119, "amount": 15.3, "desc": "Yarrabend Golf", "date": "2026-03-21", "catId": "sport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1120, "amount": 448.64, "desc": "Yarrabend Golf Membership", "date": "2026-03-24", "catId": "sport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1121, "amount": 22.5, "desc": "Yarrabend Golf", "date": "2026-03-29", "catId": "sport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1122, "amount": 57.0, "desc": "Yarrabend Golf", "date": "2026-03-29", "catId": "sport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1123, "amount": 146.95, "desc": "Freeway Golf", "date": "2026-04-01", "catId": "sport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1124, "amount": 23.95, "desc": "Anytime Fitness", "date": "2026-04-07", "catId": "sport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1125, "amount": 23.85, "desc": "Anytime Fitness", "date": "2026-04-10", "catId": "sport", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1126, "amount": 290.0, "desc": "Psychology", "date": "2026-03-27", "catId": "medical", "acctId": "acct3", "notes": "", "time": ""}, {"id": 1127, "amount": 180.0, "desc": "Psychology", "date": "2026-03-30", "catId": "medical", "acctId": "acct3", "notes": "", "time": ""}, {"id": 2001, "amount": 20.0, "desc": "Supersede Coffee", "date": "2026-06-01", "catId": "dining", "acctId": "acct2", "notes": "", "time": "09:30"}, {"id": 2002, "amount": 2.64, "desc": "Linkt Toll Fee", "date": "2026-06-01", "catId": "transport", "acctId": "acct1", "notes": "", "time": "08:15"}];
 var CAT_DATA = [{"id": "food", "zh": "\u98df\u54c1", "en": "Grocery", "color": "#ff9f0a", "budget": 1000, "icon": "\ud83d\uded2"}, {"id": "transport", "zh": "\u4ea4\u901a", "en": "Transport", "color": "#0a84ff", "budget": 400, "icon": "\ud83d\ude8c"}, {"id": "shopping", "zh": "\u8cfc\u7269", "en": "Shopping", "color": "#bf5af2", "budget": 600, "icon": "\ud83d\udecd"}, {"id": "bills", "zh": "\u5e33\u55ae", "en": "Bills", "color": "#ff453a", "budget": 300, "icon": "\ud83d\udcc4"}, {"id": "subs", "zh": "\u8a02\u95b1", "en": "Subscriptions", "color": "#5e5ce6", "budget": 200, "icon": "\ud83d\udcf1"}, {"id": "dining", "zh": "\u9910\u5ef3", "en": "Food & Dining", "color": "#ff375f", "budget": 500, "icon": "\ud83c\udf7d"}, {"id": "other", "zh": "\u5176\u4ed6", "en": "Other", "color": "#8e8e93", "budget": 200, "icon": "\ud83d\udce6"}, {"id": "sport", "zh": "\u904b\u52d5", "en": "Sport", "color": "#30d158", "budget": 300, "icon": "\u26f3"}, {"id": "medical", "zh": "\u91ab\u7642", "en": "Medical", "color": "#1ec8e7", "budget": 200, "icon": "\ud83d\udc8a"}, {"id": "home", "zh": "\u4f4f\u5c4b", "en": "Home Repair", "color": "#ffd60a", "budget": 200, "icon": "\ud83c\udfe0"}, {"id": "donation", "zh": "\u6350\u6b3e", "en": "Donation", "color": "#ff6b6b", "budget": 100, "icon": "\u2764"}];
@@ -429,9 +432,9 @@ var state = { expenses:[], categories:[], accounts:[], reminders:[], reminderLis
 var selDate = null, selCatAdd = null, selColor = COLORS[3], selListColor = COLORS[0], selRemListId = null, selPriority = 'none', selFreq = 'none', editCatId = null, editAcctId = null, editTxId = null, editListId = null, curListId = null, calY = 0, calM = 0, calSelDate = null, pendingThumb = null;
 
 function pad(n) { return n < 10 ? '0' + n : '' + n; }
-function localDate(d) { return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate()); }
-function today() { return localDate(new Date()); }
-function yesterday() { var d = new Date(); d.setDate(d.getDate()-1); return localDate(d); }
+function localDate(d) { return d.getFullYear()+'-'+(d.getMonth()+1<10?'0':'')+(d.getMonth()+1)+'-'+(d.getDate()<10?'0':'')+d.getDate(); }
+function today() { var d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1<10?'0':'')+(d.getMonth()+1)+'-'+(d.getDate()<10?'0':'')+d.getDate(); }
+function yesterday() { var d=new Date(); d.setDate(d.getDate()-1); return d.getFullYear()+'-'+(d.getMonth()+1<10?'0':'')+(d.getMonth()+1)+'-'+(d.getDate()<10?'0':'')+d.getDate(); }
 function fmtA(n) { return 'A$' + Number(n).toFixed(2); }
 function fmtS(n) { return '$' + Math.round(n); }
 function el(id) { return document.getElementById(id); }
@@ -439,7 +442,7 @@ function ce(tag) { return document.createElement(tag); }
 
 function getCat(id) { for (var i=0;i<state.categories.length;i++) { if (state.categories[i].id===id) return state.categories[i]; } return {id:'other',zh:'Other',en:'Other',color:'#8e8e93',budget:200,icon:'?'}; }
 function getAcct(id) { for (var i=0;i<state.accounts.length;i++) { if (state.accounts[i].id===id) return state.accounts[i]; } return null; }
-function monthExps() { var m=new Date().getFullYear()+'-'+pad(new Date().getMonth()+1), r=[]; for(var i=0;i<state.expenses.length;i++) { if(state.expenses[i].date.indexOf(m)===0) r.push(state.expenses[i]); } return r; }
+function monthExps() { if(!state||!state.expenses) return []; var m=new Date().getFullYear()+'-'+pad(new Date().getMonth()+1), r=[]; for(var i=0;i<state.expenses.length;i++) { if(state.expenses[i].date.indexOf(m)===0) r.push(state.expenses[i]); } return r; }
 function sumAmt(arr) { var s=0; for(var i=0;i<arr.length;i++) s+=arr[i].amount; return s; }
 
 function save() { try { localStorage.setItem('wx4', JSON.stringify(state)); } catch(e) {} }
@@ -454,11 +457,12 @@ function load() {
       if (p.reminders) state.reminders = p.reminders;
       if (p.reminderLists) state.reminderLists = p.reminderLists;
       if (p.totalBudget) state.totalBudget = p.totalBudget;
-      if (p.apiKey) state.apiKey = p.apiKey;
+      if (p.apiKey) state.apiKey = p.apiKey; else /* api key removed */;
     } else {
       state.expenses = EXP_DATA;
       state.categories = CAT_DATA;
       state.accounts = ACC_DATA;
+      /* api key removed */;
       save();
     }
   } catch(e) {
@@ -533,6 +537,7 @@ function renderCalStrip() {
 }
 
 function renderHome() {
+  if (!state || !state.expenses) { setTimeout(renderHome, 100); return; }
   renderCalStrip();
   var exps = monthExps(), total = sumAmt(exps), budget = state.totalBudget, pct = Math.min(total/budget,1), rem = budget-total;
   var hs = el('hero-spent'); if(hs) hs.textContent = Math.round(total).toLocaleString();
@@ -567,9 +572,16 @@ function renderRecent() {
     var lbl = selDate===td ? 'Today' : selDate===yd ? 'Yesterday' : d2.getDate()+' '+months[d2.getMonth()];
     headLabel = lbl + ' \u00b7 ' + sorted.length + ' expense' + (sorted.length!==1?'s':'');
   } else {
-    sorted = state.expenses.slice().sort(function(a,b) { if(a.date<b.date) return 1; if(a.date>b.date) return -1; return b.id-a.id; });
-    if (sorted.length > 20) sorted = sorted.slice(0,20);
-    headLabel = 'Recent';
+    var todayExps = [];
+    for (var ti=0;ti<state.expenses.length;ti++) { if(state.expenses[ti].date===td) todayExps.push(state.expenses[ti]); }
+    if (todayExps.length > 0) {
+      sorted = todayExps.sort(function(a,b){return b.id-a.id;});
+      headLabel = 'Today · ' + sorted.length + ' expense' + (sorted.length!==1?'s':'');
+    } else {
+      sorted = state.expenses.slice().sort(function(a,b) { if(a.date<b.date) return 1; if(a.date>b.date) return -1; return b.id-a.id; });
+      if (sorted.length > 20) sorted = sorted.slice(0,20);
+      headLabel = 'Recent';
+    }
   }
   var rh = el('recent-head'); if(rh) rh.textContent = headLabel;
   if (sorted.length === 0) {
@@ -620,6 +632,7 @@ function renderSlides(exps) {
 }
 
 function renderProgress() {
+  if (!state || !state.expenses || !state.categories) { setTimeout(renderProgress, 100); return; }
   var now = new Date();
   var ms = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var pm = el('prog-month'); if(pm) pm.textContent = ms[now.getMonth()] + ' ' + now.getFullYear();
@@ -656,6 +669,7 @@ function renderProgress() {
 }
 
 function renderSettings() {
+  if (!state || !state.categories || !state.accounts) { setTimeout(renderSettings, 100); return; }
   var bi = el('budget-input-area'); if(bi) bi.innerHTML = '<div style="display:flex;align-items:center;gap:8px;padding:12px 16px;"><span style="flex:1;font-size:14px;">Total monthly budget</span><input type="number" value="' + state.totalBudget + '" onchange="state.totalBudget=+this.value;save();" style="background:#2c2c2e;border:none;border-radius:8px;padding:6px 10px;font-size:14px;color:#fff;width:90px;text-align:right;font-family:inherit;outline:none;"></div>';
   var cl = el('cat-list'); if(!cl) return; cl.innerHTML = '';
   for (var i=0;i<state.categories.length;i++) {
@@ -728,14 +742,17 @@ function handleReceipt(input) {
     xhr.setRequestHeader('x-api-key',state.apiKey);
     xhr.setRequestHeader('anthropic-version','2023-06-01');
     xhr.setRequestHeader('anthropic-dangerous-direct-browser-access','true');
+    xhr.setRequestHeader('anthropic-beta','');
     xhr.onload = function() {
       el('scan-overlay').style.display = 'none';
       try {
         var data = JSON.parse(xhr.responseText);
-        var text = data.content&&data.content[0] ? data.content[0].text : '';
-        var m = text.match(/\{[\s\S]*\}/);
-        if (!m) { toast('Scan failed'); return; }
-        var r = JSON.parse(m[0]);
+        if (data.error) { toast('Scan error: ' + data.error.message); return; }
+        var text = (data.content && data.content[0] && data.content[0].text) ? data.content[0].text : '';
+        var jsonMatch = text.match(/\{[\s\S]*?\}/);
+        if (!jsonMatch) { toast('Could not read receipt. Try manual entry.'); return; }
+        var r;
+        try { r = JSON.parse(jsonMatch[0]); } catch(pe) { toast('Scan parse error. Try manual entry.'); return; }
         if (r.amount) { var aa=el('add-amount'); if(aa) aa.value=r.amount; }
         if (r.description) { var ad=el('add-desc'); if(ad) ad.value=r.description; }
         if (r.date) { var adate=el('add-date'); if(adate) adate.value=r.date; }
@@ -753,7 +770,18 @@ function handleReceipt(input) {
       } catch(e2) { toast('Scan failed'); }
     };
     xhr.onerror = function() { el('scan-overlay').style.display='none'; toast('Scan failed'); };
-    xhr.send(JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:400,messages:[{role:'user',content:[{type:'image',source:{type:'base64',media_type:mt,data:b64}},{type:'text',text:'Extract from this receipt: amount (number only), description (max 40 chars), date (YYYY-MM-DD), category from: Grocery,Transport,Shopping,Bills,Subscriptions,Food & Dining,Sport,Medical,Home Repair,Donation,Other. Reply ONLY with JSON: {"amount":0,"description":"","date":"","category":""}'}]}]}));
+    var scanPayload = {
+      model: 'claude-opus-4-5',
+      max_tokens: 400,
+      messages: [{
+        role: 'user',
+        content: [
+          {type:'image',source:{type:'base64',media_type:mt,data:b64}},
+          {type:'text',text:'Extract from this receipt. Reply ONLY with this exact JSON format, no other text: {"amount":0.00,"description":"merchant name max 30 chars","date":"YYYY-MM-DD","category":"one of: Grocery Transport Shopping Bills Subscriptions Dining Sport Medical Home Other"}'}
+        ]
+      }]
+    };
+    xhr.send(JSON.stringify(scanPayload));
   };
   reader.readAsDataURL(file); input.value='';
 }
@@ -967,6 +995,7 @@ function showDayDetail(ds) {
 }
 
 function renderReminders() {
+  if (!state || !state.reminders) { setTimeout(renderReminders, 100); return; }
   var rems=state.reminders||[],td=today();
   var tc=0,uc=0,ac=0,dc=0;
   for(var i=0;i<rems.length;i++){var r=rems[i];if(r.done){dc++;}else{ac++;if(r.date===td)tc++;else if(r.date&&r.date>td)uc++;}}
