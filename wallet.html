@@ -752,7 +752,6 @@ function handleReceipt(input) {
     xhr.setRequestHeader('x-api-key',state.apiKey);
     xhr.setRequestHeader('anthropic-version','2023-06-01');
     xhr.setRequestHeader('anthropic-dangerous-direct-browser-access','true');
-    xhr.setRequestHeader('anthropic-beta','');
     xhr.onload = function() {
       el('scan-overlay').style.display = 'none';
       try {
