@@ -434,7 +434,7 @@ var CAT_DATA = [{"id": "food", "zh": "\u98df\u54c1", "en": "Grocery", "color": "
 var ACC_DATA = [{"id": "acct1", "name": "Everyday Debit", "bank": "CommBank", "last4": "", "type": "everyday", "color": "#ff9f0a"}, {"id": "acct2", "name": "Up Bank", "bank": "Up", "last4": "", "type": "savings", "color": "#30d158"}, {"id": "acct3", "name": "Credit Card", "bank": "ANZ", "last4": "", "type": "credit", "color": "#0a84ff"}];
 
 var state = { expenses:[], categories:[], accounts:[], reminders:[], reminderLists:[{id:'rl1',name:'Personal',color:'#0a84ff'},{id:'rl2',name:'Work',color:'#ff453a'},{id:'rl3',name:'Finance',color:'#30d158'}], totalBudget:3000, apiKey:'' };
-var selDate = null, selCatAdd = null, selColor = COLORS[3], selListColor = COLORS[0], selRemListId = null, selPriority = 'none', selFreq = 'none', editCatId = null, editAcctId = null, editTxId = null, editListId = null, curListId = null, calY = 0, calM = 0, calSelDate = null, pendingThumb = null;
+var selDate = null, preserveSelDate = false, selCatAdd = null, selColor = COLORS[3], selListColor = COLORS[0], selRemListId = null, selPriority = 'none', selFreq = 'none', editCatId = null, editAcctId = null, editTxId = null, editListId = null, curListId = null, calY = 0, calM = 0, calSelDate = null, pendingThumb = null;
 
 function pad(n) { return n < 10 ? '0' + n : '' + n; }
 function localDate(d) { return d.getFullYear()+'-'+(d.getMonth()+1<10?'0':'')+(d.getMonth()+1)+'-'+(d.getDate()<10?'0':'')+d.getDate(); }
@@ -492,7 +492,7 @@ function showScreen(name) {
   if (name === 'add') { el('screen-add').classList.add('active'); initAdd(); return; }
   var s = el('screen-' + name); if (s) s.classList.add('active');
   var n = el('nav-' + name); if (n) n.classList.add('active');
-  if (name === 'home') { selDate = null; renderHome(); }
+  if (name === 'home') { if (!preserveSelDate) selDate = null; preserveSelDate = false; renderHome(); }
   if (name === 'progress') renderProgress();
   if (name === 'reminders') renderReminders();
   if (name === 'settings') renderSettings();
@@ -735,7 +735,11 @@ function saveExpense() {
   var notes = (el('add-notes')||{}).value||'';
   var now = new Date(), time = pad(now.getHours())+':'+pad(now.getMinutes());
   state.expenses.push({id:Date.now(),amount:amt,desc:desc.trim(),date:dateV,catId:selCatAdd||(state.categories[0]||{}).id,acctId:acctId,notes:notes.trim(),time:time,scanned:!!pendingThumb,receiptThumb:pendingThumb||null});
-  pendingThumb = null; save(); toast('Saved!'); showScreen('home');
+  pendingThumb = null; save();
+  selDate = dateV;
+  preserveSelDate = true;
+  toast('Saved!');
+  showScreen('home');
 }
 
 function startScan() { if(!state.apiKey) { openModal('api-modal'); return; } el('receipt-file').click(); }
@@ -947,7 +951,7 @@ function renderCalGrid() {
       var topCat=null,topAmt=0;for(var k in ctots){if(ctots[k]>topAmt){topAmt=ctots[k];topCat=getCat(k);}}
       var hasData=exs.length>0,pct=Math.min(tot/daily,1),C=2*Math.PI*18,color=topCat?topCat.color:'#2a2a2a';
       var cell=document.createElement('div');cell.className='cal-cell'+(isT?' today':'')+(isF?' future':'')+(isSel?' sel':'');
-      if(!isF)cell.onclick=(function(dstr){return function(){calSelDate=dstr;showDayDetail(dstr);};})(ds);
+      if(!isF)cell.onclick=(function(dstr){return function(){goToHomeDate(dstr);};})(ds);
       var dateEl=document.createElement('div');dateEl.className='cal-date';
       if(isT)dateEl.style.cssText='background:#fff;color:#000;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;';
       dateEl.textContent=day;cell.appendChild(dateEl);
@@ -973,6 +977,12 @@ function renderCalGrid() {
     var anchor=document.getElementById('cal-month-anchor');
     if(anchor) anchor.scrollIntoView({behavior:'smooth',block:'start'});
   },100);
+}
+
+function goToHomeDate(dateStr) {
+  selDate = dateStr;
+  preserveSelDate = true;
+  showScreen('home');
 }
 
 function showDayDetail(ds) {
